@@ -1,0 +1,40 @@
+
+
+$small-screen: 425px;
+$medium-screen:767.5px;
+$large-screen: 912.98px;
+$extra-large-screen: 1024.98px;
+$hyper-large-screen: 1025px;
+
+@mixin small-screen {
+  @media screen and (min-width: $small-screen) {
+    @content;
+  }
+}
+
+@mixin medium-screen {
+  @media screen and (min-width: $small-screen )and (max-width: $medium-screen) {
+    @content;
+
+  }
+}
+
+@mixin large-screen {
+  @media screen and (min-width: $medium-screen  ) and (max-width: $large-screen) {
+    @content;
+  }
+}
+
+@mixin extra-large-screen {
+  @media screen and (min-width: $large-screen) and (max-width: $extra-large-screen ) {
+    @content;
+  }
+}
+
+@mixin hyper-large-screen {
+
+
+  @media screen  and (min-width: $hyper-large-screen){
+    @content;
+  }
+}

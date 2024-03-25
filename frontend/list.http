@@ -1,0 +1,16 @@
+GEt http://127.0.0.1:8000/api/dogs
+
+
+
+
+
+
+/*$originalFileName = $request->file('pictures')->getClientOriginalName();
+$imagePath = './src/assets/' . $originalFileName;
+$request->file('pictures')->storeAs('src/assets', $originalFileName, 'frontend');
+$animal->pictures = $imagePath;
+
+
+$request->validate([
+            'pictures' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);

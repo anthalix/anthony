@@ -1,0 +1,1956 @@
+@import 'mixins';
+
+@import "color";
+
+#app {
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  text-align: center;
+  background-color: rgb(76, 75, 75);
+
+
+  display: block;
+  margin: 0;
+
+  @include medium-screen {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+
+  }
+
+
+}
+
+body {
+
+  width: 100%;
+
+  @include medium-screen {
+    width: 100%;
+  }
+}
+
+
+main {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 50px;
+  padding-top: 25px;
+  position: relative;
+  color: white;
+  margin-top: 0;
+
+
+  background-color: grey;
+
+
+  main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+
+
+}
+
+.title_home {
+
+  height: 10vh;
+  width: 30vw;
+  background: opacify($color: #00000080, $amount: 0);
+
+  @include hyper-large-screen {
+    width: 50%;
+    margin-top: 30px;
+    margin-top: 150px;
+  }
+
+
+
+  @include extra-large-screen {
+
+
+    width: 60%;
+    margin-top: 10px;
+  }
+
+  @include large-screen {
+    font-size: 2rem;
+    height: 7vh;
+    width: 50vw;
+    margin-top: 25px;
+
+  }
+
+  @include medium-screen {
+    font-size: 1.5rem;
+    margin-top: 50px;
+    width: 75vw;
+    height: 6vh;
+  }
+
+
+}
+
+h1 {
+  font-family: 'bebas+neue';
+  font-size: 2.5rem;
+  margin: auto;
+  width: 15%;
+  height: 7vh;
+  padding-top: 5px;
+  color: $color;
+  margin-bottom: 50px;
+  box-shadow: $box-shadow;
+  padding-bottom: 25px;
+  background: opacify($color: #00000080, $amount: 0);
+}
+
+h2,
+h3 {
+  color: $color;
+  background: opacify($color: #00000080, $amount: 0);
+  width: 350px;
+  box-shadow: $box-shadow;
+  margin: auto;
+
+
+
+  @include medium-screen {
+    font-size: 1rem;
+  }
+
+}
+
+
+/*HEADER*/
+header {
+
+  width: 100%;
+  height: 300px;
+
+  @include large-screen {
+
+    height: 200px;
+  }
+
+  @include medium-screen {
+
+    width: 100%;
+    margin: 0;
+
+    height: 200px;
+  }
+
+
+}
+
+.menu_navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 50px;
+
+
+  text-decoration: none;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+
+
+
+
+}
+
+.menu_navbar-link {
+
+
+
+  list-style: none;
+  font-size: 0.7rem;
+  background: opacify($color: #1f0ee280, $amount: 0);
+  padding: 2px 5px;
+
+  width: 150%;
+  margin-right: 10px auto;
+
+
+}
+
+.menu_navbar-link>a {
+
+  color: white;
+  text-decoration: none;
+
+
+}
+
+#mainNav {
+
+  font-family: 'bebas+neue';
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+
+  @include extra-large-screen {
+
+    width: 100%;
+    height: 30vh;
+
+  }
+
+  @include large-screen {
+    height: 200px;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  @include medium-screen {
+    width: 100%;
+
+  }
+}
+
+.logo {
+  width: 20vw;
+  height: 40vh;
+  background: opacify($color: #00000080, $amount: 0);
+  box-shadow: $box-shadow;
+
+  @include hyper-large-screen {
+
+    width: 20vw;
+    margin-left: 25px;
+  }
+
+  @include extra-large-screen {
+    width: 28vw;
+    height: 30vh;
+    margin-left: 25px;
+
+  }
+
+  @include large-screen {
+    width: 230px;
+    height: 200px;
+    margin-left: 10px;
+  }
+
+  @include medium-screen {
+    width: 200px;
+    height: 200px;
+    margin-right: 30px;
+    margin-left: 10px;
+  }
+
+}
+
+.burger {
+
+  display: none;
+
+
+  @include medium-screen {
+
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    cursor: pointer;
+    top: 50px;
+    right: 40px;
+  }
+
+  .hamburger-box {
+
+    box-shadow: $color-shadow;
+  }
+
+}
+
+#navbar-nav {
+  font-family: 'bebas+neue';
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75%;
+  height: 20vh;
+  text-decoration: none;
+  padding-right: 5vh;
+  padding-top: 150px;
+   @include hyper-large-screen{
+  margin-right: 50px;
+}
+  @include extra-large-screen {
+    width: 80%;
+    height: 40vh;
+    padding-right: 1vh;
+    padding-top: 10px;
+    font-size: calc(0.5rem + 1vw);
+    margin-right: 20px;
+  }
+
+  @include large-screen {
+    height: 20vh;
+    padding-top: 50px;
+
+ @include medium-screen{
+  width: 50px;
+ }
+
+.navbar-link {
+      display: flex;
+      text-decoration-line: none;
+      font-family: 'bebas+neue';
+      font-weight: bold;
+      background: opacify($color: #00000080, $amount: 0);
+      padding: 0 3px;
+      font-size: 1rem;
+      width: auto;
+
+    }
+  }
+
+  @include medium-screen {
+    position: fixed;
+    left: 0;
+    flex-direction: column;
+    background: opacify($color: #00000080, $amount: 0);
+    width: 30%;
+    height: 160px;
+    top: 40px;
+    transform: translateX(110%);
+    transition: all .5s ease-in-out;
+    padding: 0;
+    margin-top: -115%;
+
+    .navbar-link {
+      display: flex;
+      text-decoration-line: none;
+      font-family: 'bebas+neue';
+      font-weight: bold;
+      box-shadow: $box-shadow;
+      padding: 0 10px;
+      font-size: 0.5rem;
+      background: opacify($color: #00000080, $amount: 0);
+    }
+
+    .navbar-link>a {
+      display: block;
+      padding: 0.5rem;
+      font-size: 0.7rem;
+      background: opacify($color: #00000080, $amount: 0);
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.navbar-link {
+  display: flex;
+  text-decoration-line: none;
+  font-family: 'bebas+neue';
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0 10px;
+  background: opacify($color: #00000080, $amount: 0);
+  box-shadow: $box-shadow;
+  padding-top: 0;
+
+  @include hyper-large-screen {
+    font-size: calc(0.5rem + 1.5vw);
+
+    padding: 5px
+  }
+
+  @include extra-large-screen {
+
+    font-size: calc(0.5rem + 1.5vw);
+
+    padding: 5px
+  }
+
+  @include large-screen {
+
+    font-size: 1rem;
+  }
+
+
+}
+
+.navbar-link>a {
+
+  color: white;
+  text-decoration: none;
+
+  @include medium-screen {
+    background: opacify($color: #00000080, $amount: 0);
+
+  }
+
+
+}
+
+.navbar-link>a:hover {
+  color: white;
+  text-decoration: none;
+
+
+
+
+}
+
+
+/*FOOTER*/
+
+
+footer {
+  margin-top: 70px;
+  width: 100%;
+  height: 450px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'bebas+neue';
+  padding-left: 0;
+
+  @include hyper-large-screen{
+    margin-left: 25px;
+  }
+
+   @include extra-large-screen {
+
+    width: 100%;
+    height: 500px;
+  }
+
+  @include large-screen {
+
+    width: 100%;
+    height: 300px;
+    margin-left: 10px;
+    margin-top: 0;
+  }
+
+  @include medium-screen {
+
+
+    flex-direction: column;
+    height: 50%;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  font-family: 'bebas+neue';
+  display: flex;
+  flex-direction: column;
+
+  text-decoration: none;
+  padding-right: 5vh;
+  font-size: 1rem;
+
+  @include large-screen {
+    margin-left: 20px;
+    padding-top: 0.5%;
+    width: 100%;
+    float: right;
+    font-size: calc(0.3rem + 1vw);
+  }
+
+  @include medium-screen {
+    font-size: 0.7rem;
+    padding: 0;
+  }
+
+.link {
+    display: flex;
+    text-decoration-line: none;
+    font-family: 'bebas+neue';
+    font-weight: bold;
+
+
+    @include large-screen {
+      margin-left: 70px;
+      padding-top: 0.5%;
+      width: 100%;
+
+
+      font-size: calc(0.3rem + 1vw);
+    }
+  }
+
+  .link>a {
+
+    color: white;
+    text-decoration: none;
+    background: opacify($color: #00000080, $amount: 0);
+    box-shadow: $box-shadow;
+
+
+    padding: 0 10px
+  }
+
+  .link>a:hover {
+
+    color: white;
+    text-decoration: none;
+   
+
+  }
+
+}
+
+.coordonnées {
+  display: flex;
+  color: $color;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+  height: 150px;
+  padding-left: 25px;
+  padding-right: 40px;
+  font-family: 'bebas+neue';
+  padding-top: 25px;
+  background: opacify($color: #00000080, $amount: 0);
+  box-shadow: $box-shadow;
+
+@include hyper-large-screen{
+  padding-right: 20px;
+  width: 55%;
+}
+@include extra-large-screen{
+  padding-right: 10px;
+  margin-left: 25px;
+}
+
+  p {
+    @include large-screen {
+      font-size: 0.7rem;
+      margin-left: 15px;
+    }
+  }
+
+  @include large-screen {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @include medium-screen {
+
+
+    font-size: 0.7rem;
+    padding-right: 25px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+
+}
+
+.cta {
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  height: 290px;
+  width: 20%;
+  margin-right: 10%;
+  background: opacify($color: #00000080, $amount: 0);
+  z-index: 5;
+  box-shadow: $box-shadow;
+
+
+
+  @include hyper-large-screen {
+    width: 35%;
+    margin-left: 30px;
+    margin-right: 120px;
+  }
+
+
+
+  @include extra-large-screen {
+    margin-right: 30px;
+    margin-bottom: 20px;
+    width: 35%;
+    margin-left: 15px;
+  }
+
+  @include large-screen {
+
+    width: 45%;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+
+
+  @include medium-screen {
+    width: 100%;
+    font-size: 0.8rem;
+    height: 00%;
+    margin: 0;
+
+
+
+  }
+}
+
+.cta-title {
+  border-radius: 25px 25px 0 0;
+  color: white;
+  font-size: 1.5rem;
+
+}
+
+.cta:hover {
+  transform-origin: right;
+
+  transform: scale(1.5);
+
+  @include large-screen {
+    transform: scale(1.2);
+  }
+}
+
+.list-hours {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  text-align: center;
+  list-style-type: none;
+  padding-right: 20px;
+  color: white;
+  padding-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  justify-content: space-between;
+
+
+  @include medium-screen {
+
+    background: opacify($color: #00000080, $amount: 0);
+
+    box-shadow: $box-shadow;
+
+    margin-top: 0;
+
+
+  }
+
+
+}
+
+.list-hours .list-hours-item {
+  display: flex;
+  padding-bottom: 8px;
+  margin-bottom: 0;
+  padding-right: 10px;
+  margin-top: 0;
+  font-family: 'luciole';
+  text-decoration: none;
+  text-align: start;
+  font-weight: 3rem;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+
+.list-hours-item-day {
+  font-weight: bold;
+  display: flex;
+  color: rgb(7, 184, 66);
+  padding-bottom: 8px;
+  margin-bottom: 0;
+  padding-right: 10px;
+  margin-top: 0;
+  font-family: 'luciole';
+  text-decoration: none;
+  text-align: start;
+  font-weight: 3rem;
+  justify-content: space-between;
+  margin-left: 10px;
+
+}
+
+
+/*PAGE HOME*/
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
+  padding-top: 25px;
+  margin-bottom: 25px;
+
+  @include extra-large-screen {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.polaroid-images-home {
+
+  margin: 0 0 10px;
+  padding: 10px 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  top: 15px;
+  box-shadow: $box-shadow;
+  border-radius: 50%;
+
+
+
+  @include large-screen {
+    font-size: 18px;
+    width: 40%;
+    height: auto;
+  }
+
+  @include medium-screen {
+    width: 50%;
+    margin-block-end: 20px;
+    margin-right: 20px;
+  }
+
+}
+
+.polaroid-images-home-cat {
+
+
+  margin: 0 0 10px;
+  padding: 10px 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  position: relative;
+  top: 15px;
+  box-shadow: $box-shadow;
+  border-radius: 50%;
+
+
+
+  @include large-screen {
+    font-size: 18px;
+    width: 40%;
+    height: auto;
+  }
+
+  @include medium-screen {
+    width: 50%;
+    margin-block-end: 20px;
+
+  }
+
+}
+
+.polaroid-images-home img {
+  display: block;
+  width: inherit;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+
+  @include large-screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include medium-screen {
+    width: 100%;
+    height: 100%;
+
+  }
+
+}
+
+.polaroid-images-home-cat img {
+  display: block;
+  width: inherit;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+
+
+  @include large-screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include medium-screen {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.title1 {
+  background-color: $color-bg;
+  width: 100px;
+  height: 35px;
+  border-radius: 10%;
+  margin-top: 75%;
+  margin-left: 40%;
+  padding: 8px 15px 8px 15px;
+  color: $color-text-init;
+  position: absolute;
+}
+
+.presentation {
+  width: 500px;
+  height: 260px;
+  padding-top: 25px;
+  color: $color;
+  box-shadow: $box-shadow;
+  margin: auto;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  background: opacify($color: #00000080, $amount: 0);
+
+
+  @include large-screen {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  @include medium-screen {
+    width: 100%;
+    height: auto;
+    font-size: 0.8rem;
+    padding: 15px;
+    margin: 10px auto;
+    
+  }
+
+}
+
+/*PAGE TROMBINOSCOPE*/
+
+.pet {
+  font-family: 'bebas+neue';
+  font-size: 2rem;
+  margin: auto;
+  width: 15vw;
+  height: 6vh;
+  color: white;
+  margin-bottom: 50px;
+  box-shadow: $box-shadow;
+  padding-top: 0;
+  background: opacify($color: #00000080, $amount: 0);
+
+  @include extra-large-screen {
+
+    width: 30vw;
+  }
+
+  @include large-screen {
+    width: 35vw;
+
+  }
+
+  @include medium-screen {
+    width: 50vw;
+    height: 6svh;
+    margin-top: 30px;
+
+  }
+
+}
+
+.dog {
+  display: flex;
+  flex-direction: row;
+
+  @include medium-screen {
+    flex-direction: column;
+
+  }
+
+
+}
+
+.cat {
+
+  display: flex;
+  float: right;
+  margin-bottom: 100px;
+}
+
+.trombinoscope {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10px;
+
+  @include extra-large-screen {
+    justify-content: left;
+    margin-right: 0;
+  }
+
+  @include medium-screen {
+
+    flex-direction: row;
+  }
+}
+
+.critere {
+
+  display: grid;
+  flex-direction: row;
+  width: 285px;
+  height: 560px;
+  box-shadow: $box-shadow;
+  justify-content: center;
+  margin-right: 5px;
+  padding: 0;
+  margin-top: 15px;
+
+  @include extra-large-screen {
+    margin-right: 0;
+    margin-bottom: 20px;
+    max-width: 200px;
+    height: 400px;
+  }
+
+  @include medium-screen {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: fit-content;
+  }
+
+  @include large-screen {
+
+    height: 300px;
+
+  }
+  @include medium-screen {
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+
+
+
+  }
+
+}
+
+.title-critere {
+  margin: auto;
+  width: 180px;
+  height: 40px;
+  font-size: 2em;
+  box-shadow: $box-shadow;
+
+  @include large-screen {
+
+    font-size: 1.5rem;
+    height: 30px;
+
+  }
+
+  @include medium-screen {
+
+    font-size: 1em;
+    width: 25vw;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-bottom: 0;
+  }
+}
+
+.critere-form {
+
+  display: grid;
+  flex-direction: row;
+  width: 250px;
+  height: 300px;
+  margin: auto;
+
+  @include extra-large-screen {
+
+    max-width: 200px;
+    height: 150px;
+    margin-top: 0;
+
+  }
+
+  @include large-screen {
+    width: 200px;
+    height: 230px;
+    margin-top: 0;
+
+
+  }
+
+  @include medium-screen {
+    width: 200px;
+    height: 50px;
+    margin-top: 0;
+
+
+
+  }
+
+}
+
+.selectpicker {
+  width: 130px;
+  height: 40px;
+  text-align: center;
+  color: black;
+  font-size: 0.7em;
+  margin: 20px;
+  margin-left: 50px;
+  margin-bottom: 30px;
+  box-shadow: $box-shadow;
+
+
+  @include extra-large-screen {
+    width: 80%;
+    max-width: 100px;
+    height: 30px;
+    margin: 15px;
+    margin-left: 25%;
+  }
+
+  @include large-screen {
+
+    width: 100px;
+    height: 25px;
+    margin: 10px;
+    margin-left: 25%;
+    margin-top: 10%;
+
+  }
+
+  @include medium-screen {
+    width: 100px;
+    height: 25px;
+    margin: 10px;
+
+
+
+  }
+}
+
+.selectpicker-button {
+  width: 180px;
+  height: 40px;
+  text-align: center;
+  color: $color-text ;
+  background-color: $color-bg;
+  font-size: 1em;
+  margin: 20px;
+  box-shadow: $box-shadow;
+  border-radius: 50%;
+  margin-left: 40px;
+
+  @include medium-screen {
+    width: 80%;
+    max-width: 200px;
+  }
+}
+
+.trombinoscope_profil-dog {
+  width: 210px;
+  height: 210px;
+
+
+  @include extra-large-screen {
+    width: 190px;
+    height: 190px;
+
+  }
+
+  @include large-screen {
+
+    width: 170px;
+    height: 170px;
+  }
+
+  @include medium-screen {
+    width: 150px;
+    height: 150px;
+
+
+  }
+
+}
+
+.trombinoscope_profil-cat {
+  width: 210px;
+  height: 210px;
+
+  @include large-screen {
+
+    width: 170px;
+    height: 170px;
+
+
+  }
+
+  @include medium-screen {
+    width: 150px;
+    height: 150px;
+
+
+  }
+
+}
+
+
+.polaroid-images a {
+  background: opacify($color: #00000080, $amount: 0);
+
+  float: left;
+  margin: 0 15px 30px;
+  padding: 10px 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: $box-shadow;
+  font-size: 20px;
+  content: attr(title);
+  position: relative;
+  top: 15px;
+
+
+}
+
+.polaroid-images a:after {
+  color: white;
+  font-size: 20px;
+  content: attr(title);
+  position: relative;
+  top: 15px;
+
+  @include medium-screen {
+
+    font-size: 1rem;
+  }
+
+}
+
+.polaroid-images img {
+  display: block;
+  width: inherit;
+}
+
+/*PAGE SINGLE*/
+
+.container_single {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+   @include hyper-large-screen{
+
+    margin-top: 100px;
+   }
+
+  @include extra-large-screen {
+    width: 100%;
+    height: auto;
+    margin-top: 0px;
+    justify-content: space-between;
+  }
+
+  @include large-screen{
+    margin-top: 35px;
+  }
+
+  @include medium-screen {
+
+    width: 100%;
+    height: 500px;
+
+
+  }
+
+}
+
+.menu label {
+  cursor: pointer;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: $color-bg-clear;
+  border-radius: 50px;
+  margin: 0 0.2em 1em;
+  box-shadow: 0 5px 10px 5px $color-shadow;
+
+  @include large-screen {
+    margin: 0 0.2em 0;
+  }
+
+
+}
+
+.slider-container {
+  height: 580px;
+  width: 650px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background-color: $color-bg-clear;
+  margin: 20px 80px 30px 100px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear;
+  z-index: 0;
+  box-shadow: $box-shadow;
+  margin-left: 150px;
+
+  @include hyper-large-screen {
+    margin-left: 20px;
+    margin-right: 0;
+
+
+  }
+
+  @include extra-large-screen {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 20px;
+    height:680px;
+  }
+
+  @include large-screen {
+    width: 100%;
+    height: 400px;
+    margin-left: 0;
+    margin-top: 30px;
+    margin-right: 0;
+
+
+  }
+
+  @include medium-screen {
+    width: 100%;
+    height: 270px;
+    margin-left: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+}
+
+.slide-image {
+  width: 655px;
+  height: 580px;
+
+
+  @include extra-large-screen {
+    width: 110%;
+    margin: 0;
+    height: 700px;
+  }
+
+  @include large-screen {
+    width: 120%;
+    height: 400px;
+    margin-left: 0px;
+  }
+
+  @include medium-screen {
+    width: 275px;
+    height: 275px;
+
+
+  }
+
+
+}
+
+.slide {
+  width: 650px;
+  height: 580px;
+  position: absolute;
+  top: -128px;
+  z-index: -2;
+  padding: 8em 1em 0;
+  background-size: cover;
+  transition: left 0s 0.75s;
+  margin-left: -20px;
+
+  @include extra-large-screen {
+    width: 100%;
+  }
+
+  @include large-screen {
+    width: 100%;
+    height: 400px;
+  }
+
+  @include medium-screen {
+    margin-left: 0;
+    padding: 0;
+    top: 0px;
+    width: 100%;
+    height: 400px;
+
+  }
+}
+
+[id^="slide"]:checked+.slide {
+  left: 0;
+  z-index: 100;
+  transition: left 0.5s ease-out;
+}
+
+.menu label:hover,
+.menu label:focus {
+  background-color: $color-bg;
+}
+
+.menu {
+
+  position: absolute;
+
+  left: 35%;
+  top: 95%;
+  display: inline;
+  padding-top: 5px;
+  z-index: 9000;
+  width: 25%;
+  height: 5%;
+  color: $color-bg;
+  background-color: transparent;
+
+  @include large-screen {
+
+    top: 90%;
+  }
+
+  @include medium-screen {
+
+    left: 25%;
+    width: 50%;
+    top: 90%
+  }
+}
+
+.photos {
+  width: 50%;
+  height: 800px;
+  position: relative;
+  margin-top: 5px;
+
+  @include extra-large-screen {
+    width: 70%;
+    height: 880px;
+    margin-top: 5px;
+  }
+
+  @include large-screen {
+    width: 50%;
+    height: 700px;
+
+  }
+
+
+  @include medium-screen {
+    width: 50%;
+    height: 450px;
+  }
+
+
+}
+
+.presentation-single {
+
+  width: 580px;
+  height: 580px;
+  color: $color;
+  position: relative;
+  text-align: center;
+  margin-right: 150px;
+  margin-top: 25px;
+
+  @include hyper-large-screen {
+    width: 40%;
+    margin-right: 100px;
+    margin-left: 0;
+    height: 700px;
+
+
+  }
+
+
+  @include extra-large-screen {
+    width: 40%;
+    margin-right: 0;
+    margin-left: 20px;
+    height: 800px;
+  }
+
+  @include large-screen {
+    width: 45%;
+    margin-right: 25px;
+    height: 650px;
+    margin-top: 35px;
+    margin-top: 0;
+
+  }
+
+  @include medium-screen {
+    width: 45%;
+    height: 350px;
+    margin-top: 35px;
+    margin-right: 5px;
+  }
+}
+
+.icons {
+
+  font-family: 'bebas+neue';
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0;
+  justify-content: flex-start;
+  justify-content: space-between;
+
+  @include hyper-large-screen {
+    li {
+      width: 80px;
+      margin-left: 20px;
+
+    }
+  }
+
+  @include extra-large-screen {
+    padding-right: 10px;
+
+    li {
+      width: 50px;
+      margin-left: 15px;
+    }
+    .title_icons{
+
+      width: 150px;
+    }
+  }
+
+
+  @include large-screen {
+    padding-right: 10px;
+
+    li {
+      width: 35px;
+      margin-left: 25px;
+
+
+    }
+
+    .title_icons {
+
+      width: 150px;
+      padding-right: 2px;
+    }
+  }
+
+  @include medium-screen {
+
+    li {
+      width: 30px;
+      margin-left: 10px;
+
+
+    }
+
+
+    .title_icons {
+
+
+
+      font-size: 1rem;
+      height: 25px;
+      width: 200px;
+
+    }
+  }
+}
+
+
+
+
+.icons_img {
+  width: 70px;
+  background-color: aliceblue;
+  margin-right: 35px;
+
+  @include extra-large-screen {
+    width: 50px;
+
+  }
+
+  @include large-screen {
+    width: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  @include medium-screen {
+    width: 30px;
+  }
+
+}
+
+.single {
+  width: 100px;
+  height: 50px;
+  margin-top: 30px;
+  padding-top: 0;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+
+  @include large-screen {
+
+    font-size: 1.2rem;
+    height: 25px;
+    margin-top: 50px;
+
+
+  }
+  @include medium-screen {
+
+font-size: 1rem;
+height: 17px;
+margin-bottom: 10px;
+margin-top: 10px;
+
+  }
+
+
+
+}
+
+.single_infos {
+
+  text-align: left;
+  margin-left: 10px;
+  background: opacify($color: #00000080, $amount: 0);
+  padding-left: 10px;
+  height: 400px;
+  padding-top: 20px;
+
+  @include large-screen{
+
+    margin-left: 0;
+
+    h5 {
+
+      font-size: 0.9rem;
+    }
+
+   
+  }
+
+
+
+  p {
+
+    font-size: 1em;
+    margin-top: 20px;
+
+
+    @include medium-screen{
+
+      margin-top: 10px;
+    }
+
+    @include large-screen{
+      font-size: 0.8rem;
+      padding: 15px;
+
+    }
+  }
+
+  @include extra-large-screen {
+    font-size: 1rem;
+    margin-left: 15px;
+    margin-right: 20px;
+    height: 520px;
+    padding-right: 10px;
+  }
+
+  @include medium-screen {
+    margin-left: 10px;
+    font-size: 0.6rem;
+    height: 300px;
+
+    h5{
+
+      font-size: 0.8rem;
+    }
+   
+  }
+}
+
+.button {
+  position: absolute;
+  box-shadow: $box-shadow;
+  bottom: 2%;
+  left: 12%;
+  background: opacify($color: #00000080, $amount: 0);
+
+
+  margin-left: 100px;
+
+  @include extra-large-screen {
+    width: 70%;
+    margin-left: 5px;
+    font-size: 1em;
+    height: 30px;
+
+  }
+
+  @include large-screen {
+    width: 60%;
+    height: 40px;
+    font-size: 0.7rem;
+    bottom: 25%;
+    margin-left: 10%;
+
+
+  }
+
+  @include medium-screen {
+    width: 60%;
+    height: 20px;
+    font-size: 0.36rem;
+    bottom: 1%;
+    margin-left: 10%;
+  }
+
+}
+
+.return_button {
+  position: absolute;
+  height: 40px;
+  margin-left: 120px;
+  margin-top: 50px;
+  width: 100px;
+  bottom: 100px;
+  left: 25%;
+  border-color: white;
+  color: $color-text-init;
+
+  @include extra-large-screen {
+    bottom: 25px;
+  }
+  @include large-screen {
+    width: 50%;
+    margin: 0;
+    bottom: 150px;
+
+
+  }
+
+  @include medium-screen {
+    width: 50%;
+    margin: 0;
+    bottom: 50px;
+  
+  }
+
+}
+
+
+.btn {
+  font-size: 1.5em;
+  color: $color;
+  text-decoration: none;
+
+  @include extra-large-screen {
+    width: 70%;
+    margin-left: 5px;
+    font-size: 1em;
+    height: 30px;
+    padding-top: 0;
+
+  }
+
+  @include medium-screen {
+    padding-top: 3px;
+  }
+
+}
+
+/*PAGE CONTACT*/
+
+.presentation_page-contact {
+  margin: auto;
+  color: $color;
+  width: 800px;
+  height: 1000px;
+  margin-top: 80px;
+  padding-left: 50px;
+  text-align: start;
+  padding-top: 50px;
+  position: relative;
+  background: opacify($color: #00000080, $amount: 0);
+
+
+  @include large-screen {
+    padding-top: 0;
+    width: auto;
+    height: 900px;
+    box-shadow: none;
+
+
+  }
+
+
+  @include medium-screen {
+
+    padding-top: 0;
+    width: auto;
+    height: 900px;
+    box-shadow: none;
+
+
+  }
+}
+
+.logo2 {
+
+  width: 280px;
+  height: 280px;
+  position: absolute;
+  margin-top: 0;
+  margin-left: 390px;
+  padding-right: 0;
+  padding-top: 0;
+
+  @include large-screen {
+    margin-left: 400px;
+    width: 250px;
+    height: 250px;
+    margin-top: 25px;
+
+
+  }
+
+  @include medium-screen {
+
+    margin-left: 55vw;
+    width: 22vw;
+    height: 10vh;
+    margin-top: 25px;
+
+  }
+}
+
+.form {
+  font-size: 1.5rem;
+  text-align: start;
+  position: relative;
+
+  @include medium-screen {
+    width: 50%;
+
+    font-size: 1rem;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 10px;
+}
+
+.form_input {
+  display: block;
+  width: 180px;
+  font-size: 1rem;
+  height: 30px;
+
+  @include medium-screen {
+
+    font-size: 1rem;
+    box-shadow: none;
+    margin-left: 0;
+  }
+}
+
+.send_button {
+  position: absolute;
+  height: 40px;
+  margin-left: 120px;
+  box-shadow: $box-shadow;
+  width: 120px;
+  bottom: 50px;
+  left: 25%;
+  border-color: white;
+  color: $color-text-init;
+
+  @include large-screen {
+
+    bottom: 20px;
+  }
+
+  @include medium-screen {
+
+    left: 10%;
+  }
+
+}
+
+input {
+  width: 100px;
+}
+
+textarea {
+  width: 500px;
+  height: 150px;
+  box-shadow: $box-shadow;
+
+  @include medium-screen {
+
+    font-size: 1rem;
+    width: 60vw;
+  }
+
+}
+
+.form2 {
+
+  display: flex;
+  flex-direction: column;
+}
+
+/*PAGE QUI SOMMES NOUS*/
+
+.presentation_page {
+  margin: auto;
+  padding-top: 25px;
+  color: $color;
+  width: 800px;
+  height: 620px;
+  margin-top: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-shadow: $box-shadow;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  background: opacify($color: #00000080, $amount: 0);
+
+
+
+
+  @include medium-screen {
+
+    width: 95%;
+    height: 100%;
+    font-size: 0.7rem;
+  }
+
+
+}
+
+/*PAGE-MENTIONS*/
+
+.presentation_page-mentions {
+  margin: auto;
+  padding-top: 25px;
+  color: $color;
+  width: 800px;
+  height: 850px;
+  margin-top: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-shadow: $box-shadow;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  background: opacify($color: #00000080, $amount: 0);
+
+
+
+
+
+  @include medium-screen {
+    width: 100%;
+    height: 100%;
+
+
+    font-size: 0.7rem;
+  }
+
+}
+
+/*PAGE CONDITIONS*/
+
+.presentation_page-condition {
+  margin: auto;
+  color: $color;
+  width: 600px;
+  height: 320px;
+  margin-top: 80px;
+  padding: 15px;
+  text-align: center;
+  padding-top: 50px;
+  box-shadow: $box-shadow;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  background: opacify($color: #00000080, $amount: 0);
+
+
+
+  @include small-screen {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  @include medium-screen {
+    width: 90%;
+    height: 400px;
+  }
+
+  @include large-screen {
+    width: 70%;
+    height: 350px;
+  }
+}
+
+.sub {
+  position: absolute;
+  height: 40px;
+  box-shadow: $box-shadow;
+  width: 120px;
+  bottom: 50px;
+  border-color: white;
+  color: $color-text-init;
+
+}
+
+/*page adopt*/
+
+.trombinoscope-adopt {
+  width: 95ù;
+  height: 600px;
+
+
+  @include medium-screen {
+    width: 95ù;
+    height: 500px;
+  }
+}
