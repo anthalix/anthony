@@ -66,7 +66,7 @@
 
 function topFunction() {
   window.scrollTo({
-    top: 360,
+    top: 200,
   });
 }
 

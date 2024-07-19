@@ -15,7 +15,7 @@
     </head>
     <body>
 
-    <h1>  O'REFUGE Connexion</h1>
+    <h1>  O'REFUGE Connection</h1>
 
 <form action="{{ route('Send-login') }}" method="POST" class="mt-5">
 @csrf

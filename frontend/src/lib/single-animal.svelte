@@ -40,21 +40,12 @@ function rtn() {
 
 
 <div class = "container_single">
-
-  
-
-  {#await get_animal(animals_id)}
-  <p> Récupération des données de l'espace </p>
+     {#await get_animal(animals_id)}
+     <p> Récupération des données de l'espace </p>
 
   {:then data}
-
-
-    <div class ="photos">
-
-  
-
-
-      <div class="slider-container">
+      <div class ="photos">
+       <div class="slider-container">
         <div class="menu">
           <label for="slide-dot-1"></label>
           <label for="slide-dot-2"></label>
@@ -78,21 +69,10 @@ function rtn() {
           <img class="slide-image" src="./src/assets/refuge.jpg" alt="Slide 3">
         </div>
       </div>
-      
-
-              <button on:click= {rtn} class ="return_button" > <strong>Retour</strong></button>
-            
-
-              
-           
-    </div>
-
-
-
-    <div class="presentation-single">
-
-
-     <ul class="icons">
+      <button on:click= {rtn} class ="return_button" > <strong>Retour</strong></button>
+      </div>
+       <div class="presentation-single">
+          <ul class="icons">
 
         <h3 class="title_icons">Affinités :</h3>
 
@@ -105,31 +85,21 @@ function rtn() {
         {#if data[0].ok_kid == (1)}
         <li><img class="icons_img"src="./src/assets/icons/enfant.png" alt="enfant"></li>
         {/if}
-      </ul>
-     
-
-        <h1 class="single">{data[0].name}</h1>
-        
-        <div class="single_infos">
-        <h5> Age  :  {data[0].age} ans</h5>
-        <h5> Race : {data[0].breed_name} </h5>
-        <h5> Sexe : {data[0].sex}</h5>
-        <h5> Taille : {data[0].size}</h5>
-        <h5> Description :</h5>
-
+          </ul>
+          <h1 class="single">{data[0].name}</h1>
+          <div class="single_infos">
+          <h5> Age  :  {data[0].age} ans</h5>
+          <h5> Race : {data[0].breed_name} </h5>
+          <h5> Sexe : {data[0].sex}</h5>
+          <h5> Taille : {data[0].size}</h5>
+          <h5> Description :</h5>
           <p>{data[0].description}</p>
         </div>
         <div class="button">
-        <a class='btn' aria-label="page de contact" href='/contact' use:link>Je veux l'adopter !</a>
+          <a class='btn' aria-label="page de contact" href='/contact' use:link>Je veux l'adopter !</a>
         </div>
-
-        
-
-
     </div>
-   
-
-{/await}
+   {/await}
 </div>
 
 

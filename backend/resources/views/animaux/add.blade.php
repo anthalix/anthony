@@ -7,12 +7,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function toggleNavbar() {
-        var navbar = document.getElementById("navbarNav");
-        navbar.classList.toggle("show");
-    }
-</script>
+    <script>
+        function toggleNavbar() {
+            var navbar = document.getElementById("navbarNav");
+            navbar.classList.toggle("show");
+        }
+    </script>
 
 </head>
 
@@ -42,7 +42,7 @@
     </header>
     <div class="container mt-4 mb-4 bg-light">
         <h1 class="titre">Créer un nouvel animal</h1>
-        <form action="{{ route('animaux.add') }}" method="POST"enctype="multiport/form/data">
+        <form action="{{ route('animaux.add') }}" method="POST" enctype="multiport/form/data">
             @csrf
 
             <div class="form-select">
@@ -130,9 +130,10 @@
 
 
             <div class="form-select">
-                <label for="pictures"><strong>Url de la photo</strong></label>
-                <input type="file" class="form-control" name="pictures" id="pictures" value="">
+                <label for="pictures"><strong>photo</strong></label>
+                <input type="text" class="form-control" name="pictures" id="pictures" value="">
             </div>
+
 
             <div class="form-select">
                 <label for="breed_name"><strong>Race</strong></label>
@@ -143,6 +144,7 @@
                 <button type="submit" class="btn btn-primary">Créer</button>
             </div>
         </form>
+
 
     </div>
 

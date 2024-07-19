@@ -13,6 +13,8 @@ protected $fillable = ['pictures'];
 
     public function species()
     {
+
+        
         return $this->belongsTo(Specie::class, 'species_id');
 
     }

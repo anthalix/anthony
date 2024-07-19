@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ Route::get('/breeds',[AnimalController::class,'findBreed']);
 
 
 Route::get('/dogs', [DogController::class, 'list']);
-Route::get('/dog/{id}', [DogController::class, 'show'])->where('id', '[0-9]+');
+//Route::get('/dog/{id}', [DogController::class, 'show'])->where('id', '[0-9]+');
 
 
 Route::get('/cats', [CatController::class, 'list']);

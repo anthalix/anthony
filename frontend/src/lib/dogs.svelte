@@ -16,15 +16,16 @@
 
       return result;
    };
-   const get_breeds = async () => {
+   /*const get_breeds = async () => {
       const response = await fetch("http://127.0.0.1:8000/api/breeds");
 
       const result = await response.json();
 
       return result;
    };
-
+*/
    let breeds = [];
+
 </script>
 
 <h1 class="pet">Nos Chiens</h1>
@@ -104,7 +105,7 @@
                         <img
                            class="trombinoscope_profil-dog"
                            src={animal.pictures}
-                           alt="image chats à adopter"
+                           alt="image chiens à adopter"
                         />
                      </a>
                   </div>
@@ -118,9 +119,9 @@
                   >
                      <!-- svelte-ignore a11y-img-redundant-alt -->
                      <img
-                        class="trombinoscope_profil-cat"
+                        class="trombinoscope_profil-dog"
                         src={animal.pictures}
-                        alt="image chats à adopter"
+                        alt="image chiens à adopter"
                      />
                   </a>
                </div>

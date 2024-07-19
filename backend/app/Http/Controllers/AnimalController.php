@@ -29,19 +29,8 @@ class AnimalController extends Controller
     {
         return view('animaux.add');
     }
-    public function add(Request $request)
+  public function add(Request $request)
     {
-
-        $pictures = $request->file('pictures');
-        $pictureName = $this->generateUniqueImageName($pictures);
-        $picturePath = $pictures->store('assets', $pictureName);
-
-        if (!$pictureName) {
-            return redirect()->back()->withErrors(['image' => 'Failed to upload image. Please try again.']);
-        }
-
-
-
         $animal = new Animal();
         $animal->name = $request->input('name');
         $animal->specie_id = $request->input('specie_id');
@@ -54,8 +43,8 @@ class AnimalController extends Controller
         $animal->ok_dog = $request->input('ok_dog');
         $animal->ok_kid = $request->input('ok_kid');
         $animal->name_of_adopter = $request->input('name_of_adopter');
-        $animal->pictures = $picturePath;
-
+        $animal->pictures = $request->input('pictures');
+        
 
         $animal->save();
 
@@ -68,14 +57,17 @@ class AnimalController extends Controller
         }
         $animal->breeds()->attach($breed->id);
         return redirect()->route('animaux.list')->with('success', "L'animal {$animal->name} a bien été créé.");
+
     }
-    private function generateUniqueImageName($pictures)
+
+
+    /*private function generateUniqueImageName($pictures)
     {
         $extension = $pictures->getClientOriginalExtension();
         return Str::random(20) . '.' . $extension;  // 20-character random string with extension
     }
-
-    public function edit($id)
+*/
+public function edit($id)
     {
         $animal = DB::table('animals')
             ->join('species', 'animals.specie_id', '=', 'species.id')
@@ -84,7 +76,7 @@ class AnimalController extends Controller
             ->first();
         return view('animaux.edit', ['animal' => $animal]);
     }
-    public function update(Request $request, $id)
+public function update(Request $request, $id)
     {
         $animal = Animal::findOrFail($id);
         $name = $request->input('name');
@@ -116,8 +108,8 @@ class AnimalController extends Controller
             'success',
             "L'animal a bien été modifié."
         );
-    }
-    public function show($id)
+}
+     public function show($id)
     {
         $breedInfo = DB::table('animals')
             ->join('animal_breed', 'animal_breed.animal_id', '=', 'animals.id')
@@ -136,11 +128,8 @@ class AnimalController extends Controller
     }
     public function delete($id)
     {
-        // 1. on récupère l'objet à supprimer
         $animal = Animal::findOrFail($id);
-        // 2. on le supprime en appelant sa méthode delete()
         $animal->delete();
-        // on essaye quand même de retourner le $type
         return redirect()->route('animaux.list')->with('success', "Votre {$animal->type} a bien été supprimé.");
     }
 }

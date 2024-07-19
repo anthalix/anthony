@@ -31,7 +31,7 @@
      <li>   Don d’accessoires (laisse, collier, harnais, gamelle)</li>
      <li>   Mais aussi don d’équipement pour le refuge.</li><br>
         
-        <strong>Pour faire un don au refuge, n’’hésitez pas à  nous contacter </strong>.
+        <strong>Pour faire un don au refuge, n’hésitez pas à  nous contacter </strong>.
 
     </ul>
 
