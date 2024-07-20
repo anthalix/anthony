@@ -93,8 +93,21 @@
          <p>Chargement des chiens...</p>
       {:then dogs}
          {#each dogs as animal}
-            {#if selectedSexe !== "Sexe" || selectedTaille !== "Taille" || selectedAge !== "Age" || selectedRace !== "race"}
-               {#if (selectedSexe === "Sexe" || animal.sex === selectedSexe) && (selectedTaille === "Taille" || animal.size === selectedTaille) && (selectedAge === "Age" || (selectedAge === "1" && animal.age <= 1) || (selectedAge === "2" && animal.age >= 2 && animal.age <= 5) || (selectedAge === "3" && animal.age >= 6)) && (selectedRace === "Race" || animal.breed_name === selectedRace)}
+            {#if selectedSexe !== "Sexe" ||
+             selectedTaille !== "Taille" ||
+              selectedAge !== "Age" || 
+              selectedRace !== "Race"}
+
+               {#if (selectedSexe === "Sexe" ||
+                animal.sex === selectedSexe) 
+               && (selectedTaille === "Taille" ||
+                animal.size === selectedTaille)
+                && (selectedAge === "Age" ||
+                 (selectedAge === "1" && animal.age <= 1) ||
+                  (selectedAge === "2" && animal.age >= 2 && animal.age <= 5) ||
+                   (selectedAge === "3" && animal.age >= 6))
+                 && (selectedRace === "Race" ||
+                  animal.breed_name === selectedRace)}
                   <div class="polaroid-images">
                      <a
                         href="/ficheAnimal/{animal.id}"
@@ -110,7 +123,11 @@
                      </a>
                   </div>
                {/if}
-            {:else if selectedSexe === "Sexe" || selectedTaille === "Taille" || selectedAge === "Age" || selectedRace === "race"}
+            {:else if selectedSexe === "Sexe"&&
+             selectedTaille === "Taille"&& 
+             selectedAge === "Age"&&
+              selectedRace === "Race"}
+
                <div class="polaroid-images">
                   <a
                      href="/ficheAnimal/{animal.id}"

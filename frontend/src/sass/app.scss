@@ -28,7 +28,9 @@
 
 body {
 
-  width: 100%;
+  width: 1024px;
+  height: auto;
+  margin: auto;
 
   @include medium-screen {
     width: 100%;
@@ -66,32 +68,12 @@ main {
 
 .title_home {
 
-  height: 10vh;
-  width: 30vw;
+  width: 600px;
+
+  height: auto;
+  margin-top:50px;
   background: opacify($color: #00000080, $amount: 0);
 
-  @include hyper-large-screen {
-    width: 35%;
-    margin-top: 250px;
-    font-size: 3.5rem;
-  }
-
-
-
-  @include extra-large-screen {
-
-
-    width: 60%;
-    margin-top: 10px;
-  }
-
-  @include large-screen {
-    font-size: 2rem;
-    height: 7vh;
-    width: 50vw;
-    margin-top: 25px;
-
-  }
 
   @include medium-screen {
     font-size: 1.5rem;
@@ -125,11 +107,7 @@ h3 {
   box-shadow: $box-shadow;
   margin: auto;
 
-  @include hyper-large-screen {
-    width: 400px;
-    height: 60px;
-    padding-top: 10px;
-  }
+
 
   @include medium-screen {
     font-size: 1rem;
@@ -170,7 +148,7 @@ header {
 
   text-decoration: none;
 
-  @media (min-width: 768px) {
+  @media (man-width: 794.5px) {
     display: none;
   }
 
@@ -229,12 +207,6 @@ header {
   width: 100%;
   justify-content: space-between;
 
-  @include extra-large-screen {
-
-    width: 100%;
-    height: 30vh;
-
-  }
 
   @include large-screen {
     height: 200px;
@@ -252,18 +224,7 @@ header {
   width: 20vw;
   height: 40vh;
 
-  @include hyper-large-screen {
 
-    width: 20vw;
-    margin-left: 25px;
-  }
-
-  @include extra-large-screen {
-    width: 28vw;
-    height: 30vh;
-    margin-left: 25px;
-
-  }
 
   @include large-screen {
     width: 230px;
@@ -317,7 +278,7 @@ header {
   height: 20vh;
   text-decoration: none;
   padding-right: 20px;
-  padding-top: 15%;
+  padding-top: 135px;
   margin-bottom: 0;
 
 
@@ -337,7 +298,7 @@ header {
       z-index: 5;
 
 
-@include medium-screen {
+           @include medium-screen {
                  position: fixed;
                  left: 0;
                  flex-direction: column;
@@ -405,16 +366,7 @@ footer {
   font-family: 'bebas+neue';
   padding-left: 0;
 
-  @include hyper-large-screen {
-    margin-left: 25px;
-    margin-top: 100px;
-  }
 
-  @include extra-large-screen {
-
-    width: 100%;
-    height: 500px;
-  }
 
   @include large-screen {
 
@@ -444,9 +396,6 @@ ul {
   padding-right: 5vh;
   font-size: 1rem;
 
-  @include hyper-large-screen {
-    font-size: 2rem;
-  }
 
   @include large-screen {
     margin-left: 20px;
@@ -512,18 +461,7 @@ ul {
   background: opacify($color: #00000080, $amount: 0);
   box-shadow: $box-shadow;
 
-  @include hyper-large-screen {
-    padding-right: 20px;
-    width: 55%;
-    font-size: 2rem;
-    height: 300px;
-
-  }
-
-  @include extra-large-screen {
-    padding-right: 10px;
-    margin-left: 25px;
-  }
+ 
 
 
 
@@ -566,20 +504,6 @@ ul {
 
 
 
-  @include hyper-large-screen {
-    width: 35%;
-    margin-left: 30px;
-    margin-right: 120px;
-  }
-
-
-
-  @include extra-large-screen {
-    margin-right: 30px;
-    margin-bottom: 20px;
-    width: 35%;
-    margin-left: 15px;
-  }
 
   @include large-screen {
 
@@ -688,7 +612,7 @@ ul {
   padding-top: 25px;
   margin-bottom: 25px;
 
-  @include extra-large-screen {
+  @include large-screen {
     width: 100%;
     height: auto;
   }
@@ -812,12 +736,7 @@ ul {
   text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
   background: opacify($color: #00000080, $amount: 0);
 
-  @include hyper-large-screen {
-    font-size: 2rem;
-    width: 50%;
-    height: auto;
-    padding-bottom: 20px;
-  }
+
 
 
   @include large-screen {
@@ -850,20 +769,8 @@ ul {
   padding-top: 0;
   background: opacify($color: #00000080, $amount: 0);
 
-  @include hyper-large-screen {
-    font-size: 3rem;
-    margin-top: 150px;
-  }
 
-  @include extra-large-screen {
 
-    width: 30vw;
-  }
-
-  @include large-screen {
-    width: 35vw;
-
-  }
 
   @include medium-screen {
     width: 50vw;
@@ -873,33 +780,32 @@ ul {
   }
 
 }
-
 .dog {
   display: flex;
   flex-direction: row;
 
   @include medium-screen {
     flex-direction: column;
-
-  }
+   }
 
 
 }
-
 .cat {
 
   display: flex;
-  float: right;
-  margin-bottom: 100px;
-}
+  flex-direction: row;
 
+  @include medium-screen {
+    flex-direction: column;
+}
+}
 .trombinoscope {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 10px;
+  justify-content: space-around;
 
-  @include extra-large-screen {
-    justify-content: left;
+  @include large-screen {
+    justify-content: space-around;
     margin-right: 0;
   }
 
@@ -908,7 +814,6 @@ ul {
     flex-direction: row;
   }
 }
-
 .critere {
 
   display: grid;
@@ -923,7 +828,7 @@ ul {
 
 
 
-  @include extra-large-screen {
+  @include large-screen {
     margin-right: 0;
     margin-bottom: 20px;
     max-width: 200px;
@@ -935,26 +840,13 @@ ul {
     flex-direction: row;
 
     width: 100%;
-    height: fit-content;
-  }
-
-  @include large-screen {
-
-    height: 300px;
-
-  }
-
-  @include medium-screen {
-    flex-direction: row;
-    width: 100%;
     height: 200px;
-
-
-
   }
+
+
+
 
 }
-
 .title-critere {
   margin: auto;
   width: 180px;
@@ -962,10 +854,7 @@ ul {
   font-size: 2em;
   box-shadow: $box-shadow;
 
-  @include hyper-large-screen {
 
-    height: 50px;
-  }
 
   @include large-screen {
 
@@ -984,7 +873,6 @@ ul {
     margin-bottom: 0;
   }
 }
-
 .critere-form {
 
   display: grid;
@@ -993,21 +881,6 @@ ul {
   height: 300px;
   margin: auto;
 
-
-  @include hyper-large-screen {
-
-    margin-top: 0;
-
-
-  }
-
-  @include extra-large-screen {
-
-    max-width: 200px;
-    height: 150px;
-    margin-top: 0;
-
-  }
 
   @include large-screen {
     width: 200px;
@@ -1027,7 +900,6 @@ ul {
   }
 
 }
-
 .selectpicker {
   width: 130px;
   height: 40px;
@@ -1040,13 +912,7 @@ ul {
   box-shadow: $box-shadow;
 
 
-  @include extra-large-screen {
-    width: 80%;
-    max-width: 100px;
-    height: 30px;
-    margin: 15px;
-    margin-left: 25%;
-  }
+
 
   @include large-screen {
 
@@ -1067,7 +933,6 @@ ul {
 
   }
 }
-
 .selectpicker-button {
   width: 180px;
   height: 40px;
@@ -1085,23 +950,13 @@ ul {
     max-width: 200px;
   }
 }
-
 .trombinoscope_profil-dog {
   width: 210px;
   height: 210px;
 
 
-  @include extra-large-screen {
-    width: 190px;
-    height: 190px;
 
-  }
 
-  @include large-screen {
-
-    width: 170px;
-    height: 170px;
-  }
 
   @include medium-screen {
     width: 150px;
@@ -1111,18 +966,10 @@ ul {
   }
 
 }
-
 .trombinoscope_profil-cat {
   width: 210px;
   height: 210px;
 
-  @include large-screen {
-
-    width: 170px;
-    height: 170px;
-
-
-  }
 
   @include medium-screen {
     width: 150px;
@@ -1132,8 +979,6 @@ ul {
   }
 
 }
-
-
 .polaroid-images a {
   background: opacify($color: #00000080, $amount: 0);
 
@@ -1150,7 +995,6 @@ ul {
 
 
 }
-
 .polaroid-images a:after {
   color: white;
   font-size: 20px;
@@ -1164,7 +1008,6 @@ ul {
   }
 
 }
-
 .polaroid-images img {
   display: block;
   width: inherit;
@@ -1177,30 +1020,18 @@ ul {
   flex-direction: row;
   justify-content: space-between;
 
-  @include hyper-large-screen {
 
-    margin-top: 200px;
-    justify-content: space-evenly;
-  }
 
-  @include extra-large-screen {
-    width: 100%;
-    height: auto;
-    margin-top: 0px;
-    justify-content: space-between;
-    margin-left: 10px;
-
-  }
-
-  @include large-screen {
+  
     margin-top: 35px;
     height: 600px;
-    margin-left: 10px;
+    margin:auto;
 
-  }
+ 
 
   @include medium-screen {
     flex-direction: column;
+    justify-content: space-between;
 
     width: 100%;
     height: auto;
@@ -1210,214 +1041,34 @@ ul {
   }
 
 }
+img{
 
-.menu label {
-  cursor: pointer;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-color: $color-bg-clear;
-  border-radius: 50px;
-  margin: 0 0.2em 1em;
-  box-shadow: 0 5px 10px 5px $color-shadow;
-
-  @include large-screen {
-    margin: 0 0.2em 0;
-  }
+  width: 500px;
+  height: auto;
 
 
-}
 
-.slider-container {
-  height: 580px;
-  width: 650px;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  background-color: $color-bg-clear;
-  margin: 20px 80px 30px 100px;
-  text-align: center;
-  text-decoration: none;
-  -webkit-transition: all .15s linear;
-  -moz-transition: all .15s linear;
-  transition: all .15s linear;
-  z-index: 0;
-  box-shadow: $box-shadow;
-  margin-left: 150px;
-
-  @include hyper-large-screen {
-    margin-left: 30px;
+  @include medium-screen {
     width: 75%;
-    height: 100%;
-
-
-  }
-
-  @include extra-large-screen {
-    width: 100%;
-    margin: 0;
-    margin-top: 20px;
-    height: 680px;
-  }
-
-  @include large-screen {
-    width: 100%;
-    height: 400px;
-    margin-left: 0;
-    margin-top: 30px;
-    margin-right: 0;
-
+    height:100%;
 
   }
 
-  @include medium-screen {
-    width: 300px;
-    height: 300px;
-    margin: auto;
-    margin-top: 10px;
-  }
-}
-
-
-
-.slide {
-  width: 650px;
-  height: 580px;
-  position: absolute;
-  top: -128px;
-  z-index: -2;
-  padding: 8em 1em 0;
-  background-size: cover;
-  transition: left 0s 0.75s;
-  margin-left: -20px;
-
-  @include hyper-large-screen {
-    width: 100%;
-    height: 100%;
-
-
-  }
-
-  @include extra-large-screen {
-    width: 100%;
-    height: 100%;
-  }
-
-  @include large-screen {
-    width: 100%;
-    height: 400px;
-  }
-
-  @include medium-screen {
-    margin-left: 0;
-    padding: 0;
-    top: 0px;
-    width: 300px;
-    height: 300px;
-
-  }
-}
-
-.slide-image {
-  width: 655px;
-  height: 580px;
-
-  @include hyper-large-screen {
-    width: 120%;
-    height: 130%;
-  }
-
-  @include extra-large-screen {
-    width: 110%;
-    margin: 0;
-    height: 700px;
-  }
-
-  @include large-screen {
-    width: 120%;
-    height: 416.39px;
-    margin-left: 0px;
-  }
-
-  @include medium-screen {
-    width: 300px;
-    height: 300px;
-
-
-  }
-
-
-}
-
-[id^="slide"]:checked+.slide {
-  left: 0;
-  z-index: 100;
-  transition: left 0.5s ease-out;
-}
-
-.menu label:hover,
-.menu label:focus {
-  background-color: $color-bg;
-}
-
-.menu {
-
-  position: absolute;
-
-  left: 35%;
-  top: 95%;
-  display: inline;
-  padding-top: 5px;
-  z-index: 9000;
-  width: 25%;
-  height: 5%;
-  color: $color-bg;
-  background-color: transparent;
-
-  @include large-screen {
-
-    top: 90%;
-  }
-
-  @include medium-screen {
-
-    left: 25%;
-    width: 50%;
-    top: 90%
-  }
 }
 
 .photos {
   width: 50%;
-  height: 800px;
+  height: 600px;
   position: relative;
   margin-top: 5px;
 
-  @include hyper-large-screen {
-    width: 100%;
-    height: 800px;
-    background-position: center;
 
-
-  }
-
-  @include extra-large-screen {
-    width: 75%;
-    height: 100%;
-    margin-top: 5px;
-  }
-
-  @include large-screen {
-    width: 50%;
-    height: 110%;
-
-  }
 
 
   @include medium-screen {
+    margin-top: 50px;
     width: 100%;
-    height: 350px;
-    margin-bottom: 30px;
+    height:auto;
   }
 
 
@@ -1433,27 +1084,10 @@ ul {
   margin-right: 150px;
   margin-top: 25px;
 
-  @include hyper-large-screen {
-    width: 50%;
-    margin-right: 100px;
-    margin-left: 0;
-    height: auto;
-
-
-  }
-
-
-  @include extra-large-screen {
-    width: 50%;
-    margin-right: 0;
-    margin-left: 20px;
-    height: 800px;
-  }
-
+  
   @include large-screen {
     width: 40%;
     margin-right: 25px;
-    margin-top: 35px;
     height: auto;
 
   }
@@ -1476,36 +1110,7 @@ ul {
   justify-content: flex-start;
   justify-content: space-between;
 
-  @include hyper-large-screen {
-    li {
-      width: 350px;
 
-    }
-
-    .title_icons {
-
-      font-size: 4rem;
-      height: auto;
-
-    }
-  }
-
-  @include extra-large-screen {
-    padding-right: 10px;
-    margin-right: 10px;
-
-    li {
-      width: 50px;
-      margin-left: 15px;
-    }
-
-    .title_icons {
-
-      width: 150px;
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
 
 
   @include large-screen {
@@ -1552,23 +1157,12 @@ ul {
   }
 }
 
-
-
-
 .icons_img {
   width: 70px;
   background-color: aliceblue;
   margin-right: 35px;
 
-  @include hyper-large-screen {
-
-    width: 100px;
-  }
-
-  @include extra-large-screen {
-    width: 50px;
-
-  }
+ 
 
   @include large-screen {
     width: 30px;
@@ -1590,13 +1184,7 @@ ul {
   padding-bottom: 15px;
   margin-bottom: 25px;
 
-  @include hyper-large-screen {
-    font-size: 3rem;
-    width: 20%;
-    margin-top: 70px;
-    padding-bottom: 10px;
-    height: auto;
-  }
+
 
   @include large-screen {
 
@@ -1631,17 +1219,6 @@ ul {
   padding-left: 10px;
   height: 400px;
   padding-top: 20px;
-
-  @include hyper-large-screen {
-
-    font-size: 2rem;
-    height: auto;
-
-    h5 {
-
-      font-size: 2rem;
-    }
-  }
 
   @include large-screen {
 
@@ -1679,13 +1256,7 @@ ul {
     }
   }
 
-  @include extra-large-screen {
-    font-size: 1rem;
-    margin-left: 15px;
-    margin-right: 20px;
-    height: 520px;
-    padding-right: 10px;
-  }
+
 
   @include medium-screen {
     margin-left: 10px;
@@ -1711,19 +1282,6 @@ ul {
 
   margin-left: 100px;
 
-  @include hyper-large-screen {
-
-    bottom: -10%;
-    left: 25%;
-  }
-
-  @include extra-large-screen {
-    width: 70%;
-    margin-left: 5px;
-    font-size: 1em;
-    height: 30px;
-
-  }
 
   @include large-screen {
     width: 60%;
@@ -1745,49 +1303,24 @@ ul {
 }
 
 .return_button {
-  position: absolute;
   height: 40px;
-  margin-left: 120px;
-  margin-top: 50px;
   width: 100px;
-  bottom: 100px;
   left: 25%;
   background: opacify($color: #00000080, $amount: 0);
   color: $color;
+  bottom:auto;
 
   box-shadow: $box-shadow;
 
 
 
-  @include hyper-large-screen {
-    margin-left: 15%;
-    bottom: -10%;
-    font-size: 1.5rem;
-    width: auto;
-    height: auto;
-
-
-  }
-
-  @include extra-large-screen {
-    left: 15%;
-    bottom: -15%;
-  }
-
-  @include large-screen {
-    width: 50%;
-    margin: 0;
-    bottom: 150px;
-
-
-  }
 
   @include medium-screen {
-    width: 40%;
+    width: 20%;
     height: auto;
     margin: 0;
-    bottom: 0%;
     font-size: 0.8rem;
+    margin-bottom: 25px;
 
   }
 
@@ -1798,15 +1331,6 @@ ul {
   font-size: 1.5em;
   color: $color;
   text-decoration: none;
-
-  @include extra-large-screen {
-    width: 70%;
-    margin-left: 5px;
-    font-size: 1em;
-    height: 30px;
-    padding-top: 0;
-
-  }
 
   @include medium-screen {
     padding-top: 3px;
@@ -1827,6 +1351,7 @@ ul {
   width: 800px;
   height: 1000px;
   margin-top: 80px;
+  margin-bottom: 80px;
   padding-left: 50px;
   text-align: start;
   padding-top: 50px;
@@ -1834,21 +1359,13 @@ ul {
   background: opacify($color: #00000080, $amount: 0);
 
 
-  @include large-screen {
-    padding-top: 0;
-    width: auto;
-    height: 900px;
-    box-shadow: none;
-
-
-  }
-
 
   @include medium-screen {
 
-    padding-top: 0;
-    width: auto;
-    height: 900px;
+    padding: 0;
+    padding-left: 5%;
+    width: 85%;
+    height: auto;
     box-shadow: none;
 
 
@@ -1865,34 +1382,27 @@ ul {
   padding-right: 0;
   padding-top: 0;
 
-  @include large-screen {
-    margin-left: 400px;
-    width: 250px;
-    height: 250px;
-    margin-top: 25px;
-
-
-  }
 
   @include medium-screen {
 
-    margin-left: 55vw;
-    width: 22vw;
-    height: 10vh;
+    margin-left: 60%;
+    width: 25%;
+    height: auto;
     margin-top: 25px;
 
   }
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   font-size: 1.5rem;
   text-align: start;
-  position: relative;
 
   @include medium-screen {
+    font-size:100%;
     width: 50%;
-
-    font-size: 1rem;
   }
 }
 
@@ -1901,6 +1411,11 @@ ul {
   flex-direction: row;
 
   margin-top: 10px;
+
+  @include medium-screen {
+    font-size:small;
+    width: 100%;
+  }
 }
 
 .form_input {
@@ -1918,7 +1433,6 @@ ul {
 }
 
 .send_button {
-  position: absolute;
   height: 40px;
   margin-left: 120px;
   box-shadow: $box-shadow;
@@ -1928,21 +1442,18 @@ ul {
   border-color: white;
   color: $color-text-init;
 
-  @include large-screen {
 
-    bottom: 20px;
-  }
 
   @include medium-screen {
-
-    left: 10%;
+  font-size:small;
+  width: 100px ;
+  height: auto;
+  margin-bottom: 10px;
   }
 
 }
 
-input {
-  width: 100px;
-}
+
 
 textarea {
   width: 500px;
@@ -1950,9 +1461,8 @@ textarea {
   box-shadow: $box-shadow;
 
   @include medium-screen {
+    width: 100%;
 
-    font-size: 1rem;
-    width: 60vw;
   }
 
 }

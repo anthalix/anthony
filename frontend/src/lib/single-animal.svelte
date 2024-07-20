@@ -1,5 +1,7 @@
 <script>
 import {link} from 'svelte-spa-router'
+import Carousel from 'svelte-carousel';
+
 
 
 const nav_link=[
@@ -46,31 +48,29 @@ function rtn() {
   {:then data}
       <div class ="photos">
        <div class="slider-container">
-        <div class="menu">
-          <label for="slide-dot-1"></label>
-          <label for="slide-dot-2"></label>
-          <label for="slide-dot-3"></label>
-        </div>
+
+        <Carousel let:loaded>
+          {#each data as src, imageIndex (src)}
+            <div class="img-container">
+              {#if loaded.includes(imageIndex)}
+                <img src="{src.pictures}" alt="nature" />
+              {/if}
+            </div>
+          {/each}
+        </Carousel>
       
-        <input id="slide-dot-1" type="radio" name="slides" checked />
-        <div class="slide">
-          <img class="slide-image" src="{data[0].pictures}" alt="Slide 1">
-        </div>
-      
-        <input id="slide-dot-2" type="radio" name="slides" />
-        <div class="slide">
-          <!-- svelte-ignore a11y-missing-attribute -->
-          <img class="slide-image" src="./src/assets/Animaux.jpg" alt="Slide 2">
-        </div>
-      
-        <input id="slide-dot-3" type="radio" name="slides" />
-        <div class="slide">
-          <!-- svelte-ignore a11y-missing-attribute -->
-          <img class="slide-image" src="./src/assets/refuge.jpg" alt="Slide 3">
-        </div>
+
+
+
+
       </div>
       <button on:click= {rtn} class ="return_button" > <strong>Retour</strong></button>
+
       </div>
+
+
+
+
        <div class="presentation-single">
           <ul class="icons">
 

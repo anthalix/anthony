@@ -1,10 +1,8 @@
 
 
 $small-screen: 425px;
-$medium-screen:767.5px;
-$large-screen: 912.98px;
-$extra-large-screen: 1680px;
-$hyper-large-screen: 1940px;
+$medium-screen:794.5px;
+
 
 @mixin small-screen {
   @media screen and (min-width: $small-screen) {
@@ -18,19 +16,7 @@ $hyper-large-screen: 1940px;
   }
 }
 @mixin large-screen {
-  @media screen and (min-width: $medium-screen  ) and (max-width: $large-screen) {
-    @content;
-  }
-}
-@mixin extra-large-screen {
-  @media screen and (min-width: $large-screen) and (max-width: $extra-large-screen ) {
-    @content;
-  }
-}
-@mixin hyper-large-screen {
-
-
-@media screen  and (min-width: $extra-large-screen) and (max-width: $hyper-large-screen){
+  @media screen and (min-width: $medium-screen  )  {
     @content;
   }
 }

@@ -177,16 +177,17 @@ const json = await response.json();
     </tr>
 
     <div class="form-group">
-      <input
-        type="checkbox"
-       
-        bind:checked={consent}
-      >
-      <label for="consent"
-        >J'accepte que mes données soient collectées conformément au RGPD.</label
-      >
+      <label for="consent"> J'accepte que mes données soient 
+        collectées conformément au RGPD.</label>
     </div>
+      <input id="consent" type="checkbox"bind:checked={consent}>
+  
+
+    <div>
 
     <input class="send_button" type="submit" value="Envoyer" />
+
+  </div>
+
   </form>
 </div>
