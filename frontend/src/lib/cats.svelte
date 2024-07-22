@@ -7,6 +7,9 @@
       let selectedSexe = "Sexe";
       let selectedTaille = "Taille";
       let selectedAge = "Age";
+
+   const Url = "http://localhost:8000";
+
    
    
    
@@ -123,7 +126,7 @@
             <!-- svelte-ignore a11y-img-redundant-alt -->
             <img
             class="trombinoscope_profil-cat"
-            src={animal.pictures}
+            src={`${Url}/${animal.pictures}`}
             alt="image chats à adopter"
          />
               
@@ -144,7 +147,7 @@
            use:link>
               <!-- svelte-ignore a11y-img-redundant-alt -->
               <img class="trombinoscope_profil-cat"
-               src={animal.pictures}
+               src={`${Url}/${animal.pictures}`}
                 alt="image chats à adopter"/>
            </a>
         </div>

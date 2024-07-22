@@ -50,10 +50,10 @@ function rtn() {
        <div class="slider-container">
 
         <Carousel let:loaded>
-          {#each data as src, imageIndex (src)}
+          {#each data as animal, imageIndex (animal)}
             <div class="img-container">
               {#if loaded.includes(imageIndex)}
-                <img src="{src.pictures}" alt="nature" />
+                <img src={`http://localhost:8000/${animal.pictures}`} alt="animal" />
               {/if}
             </div>
           {/each}

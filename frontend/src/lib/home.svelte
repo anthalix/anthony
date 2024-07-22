@@ -1,5 +1,6 @@
 <script>
     import { link } from "svelte-spa-router";
+    const Url = "http://localhost:8000";
 
     const nav_link = [
         {
@@ -29,7 +30,7 @@
             <!-- svelte-ignore a11y-img-redundant-alt -->
             <img
                 class="photo_accueil"
-                src="./src/assets/Sensei-dog.jpg"
+                src="{Url}/assets/Sensei-dog.jpg"
                 alt="image chien"
             />
         </a>
@@ -40,7 +41,7 @@
             <!-- svelte-ignore a11y-img-redundant-alt -->
             <img
                 class="photo_accueil"
-                src="./src/assets/Pyko-cat.jpg"
+                src="{Url}/assets/Pyko-cat.jpg"
                 alt="image chat"
             />
         </a>

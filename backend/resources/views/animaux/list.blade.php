@@ -98,7 +98,13 @@
                 <td>{{ $animal->ok_dog === 1 ? 'True' : ($animal->ok_dog === 2 ? 'False' : 'inconnu')}}</td>
                 <td>{{ $animal->ok_kid === 1 ? 'True' : ($animal->ok_kid === 2 ? 'False' : 'inconnu')}}</td>
                 <td>{{ $animal->name_of_adopter }}</td>
-                <td>{{ $animal->pictures }}</td>
+                <td>
+                {{ str_replace('public/', '', $animal->pictures) }}<br>
+                <!-- Afficher l'image -->
+                <img src="{{ asset($animal->pictures) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
+            
+            </td>
+                </td>
                 <td>
                     <a href="{{ route('animaux.edit', ['id' => $animal->id]) }}" class="btn btn-primary mb-1">Modifier</a>
 

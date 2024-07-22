@@ -28,7 +28,7 @@
 
 body {
 
-  width: 1024px;
+  width: auto;
   height: auto;
   margin: auto;
 
@@ -360,7 +360,7 @@ header {
 footer {
   margin-top: 70px;
   width: 100%;
-  height: 450px;
+  height: 350px;
   display: flex;
   justify-content: space-between;
   font-family: 'bebas+neue';
@@ -368,13 +368,6 @@ footer {
 
 
 
-  @include large-screen {
-
-    width: 100%;
-    height: 300px;
-    margin-left: 10px;
-    margin-top: 0;
-  }
 
   @include medium-screen {
 
@@ -387,28 +380,6 @@ footer {
   }
 }
 
-ul {
-  font-family: 'bebas+neue';
-  display: flex;
-  flex-direction: column;
-
-  text-decoration: none;
-  padding-right: 5vh;
-  font-size: 1rem;
-
-
-  @include large-screen {
-    margin-left: 20px;
-    padding-top: 0.5%;
-    width: 100%;
-    float: right;
-    font-size: calc(0.3rem + 1vw);
-  }
-
-  @include medium-screen {
-    font-size: 0.7rem;
-    padding: 0;
-  }
 
   .link {
     display: flex;
@@ -416,14 +387,12 @@ ul {
     font-family: 'bebas+neue';
 
 
-    @include large-screen {
-      margin-left: 70px;
       padding-top: 0.5%;
       width: 100%;
 
 
       font-size: calc(0.3rem + 1vw);
-    }
+    
   }
 
   .link>a {
@@ -445,45 +414,28 @@ ul {
 
   }
 
-}
+
 
 .coordonnées {
   display: flex;
   color: $color;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 65%;
-  height: 150px;
-  padding-left: 25px;
-  padding-right: 40px;
+  height: 180px;
   font-family: 'bebas+neue';
-  padding-top: 25px;
   background: opacify($color: #00000080, $amount: 0);
   box-shadow: $box-shadow;
+  padding: 30px 15px;
 
- 
-
-
-
-  @include large-screen {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  @include medium-screen {
+      @include medium-screen {
 
     width: 100%;
     font-size: 0.7rem;
     padding-right: 25px;
     margin-bottom: 25px;
-  }
+      }
 
-  p {
-    @include large-screen {
-      font-size: 0.7rem;
-      margin-left: 15px;
-    }
-  }
 
 
 }
@@ -504,13 +456,6 @@ ul {
 
 
 
-
-  @include large-screen {
-
-    width: 45%;
-    margin-right: 20px;
-    margin-left: 10px;
-  }
 
 
   @include medium-screen {
@@ -547,17 +492,17 @@ ul {
   font-size: 1rem;
   text-align: center;
   list-style-type: none;
-  padding-right: 20px;
+  padding-right: 10px;
   color: white;
-  padding-left: 30px;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  padding-left: 10px;
   justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 0;
 
 
   @include medium-screen {
 
-    background: opacify($color: #00000080, $amount: 0);
+    background: opacify($color: #00000011, $amount: 0);
 
     box-shadow: $box-shadow;
 
@@ -571,32 +516,24 @@ ul {
 
 .list-hours .list-hours-item {
   display: flex;
-  padding-bottom: 8px;
-  margin-bottom: 0;
-  padding-right: 10px;
-  margin-top: 0;
   font-family: 'luciole';
   text-decoration: none;
   text-align: start;
   font-weight: 3rem;
   justify-content: space-between;
-  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .list-hours-item-day {
   font-weight: bold;
   display: flex;
   color: rgb(7, 184, 66);
-  padding-bottom: 8px;
-  margin-bottom: 0;
-  padding-right: 10px;
   margin-top: 0;
   font-family: 'luciole';
   text-decoration: none;
   text-align: start;
   font-weight: 3rem;
   justify-content: space-between;
-  margin-left: 10px;
 
 }
 
@@ -953,25 +890,17 @@ ul {
 .trombinoscope_profil-dog {
   width: 210px;
   height: 210px;
-
-
-
-
-
-  @include medium-screen {
+   @include medium-screen {
     width: 150px;
     height: 150px;
-
-
-  }
+    }
 
 }
 .trombinoscope_profil-cat {
   width: 210px;
   height: 210px;
 
-
-  @include medium-screen {
+   @include medium-screen {
     width: 150px;
     height: 150px;
 
@@ -1019,13 +948,8 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-
-
-  
-    margin-top: 35px;
+   margin-top:50px;
     height: 600px;
-    margin:auto;
 
  
 
@@ -1577,12 +1501,19 @@ textarea {
 /*page adopt*/
 
 .trombinoscope-adopt {
-  width: 95ù;
-  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin:auto;
+  width: 85%;
+  height:auto;
+  background-image: url("http://localhost:8000/assets/blue-sea.jpg");
+  background-size: cover;
+  margin-bottom: 50px;
 
 
   @include medium-screen {
-    width: 95ù;
-    height: 500px;
+    width: 95%;
+    height:800px;
   }
 }

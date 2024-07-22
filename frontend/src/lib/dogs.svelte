@@ -8,6 +8,9 @@
    let selectedTaille = "Taille";
    let selectedAge = "Age";
 
+   const Url = "http://localhost:8000";
+
+
  
    const get_dogs = async () => {
       const response = await fetch("http://127.0.0.1:8000/api/dogs");
@@ -117,7 +120,7 @@
                         <!-- svelte-ignore a11y-img-redundant-alt -->
                         <img
                            class="trombinoscope_profil-dog"
-                           src={animal.pictures}
+                           src={`${Url}/${animal.pictures}`}
                            alt="image chiens à adopter"
                         />
                      </a>
@@ -137,7 +140,7 @@
                      <!-- svelte-ignore a11y-img-redundant-alt -->
                      <img
                         class="trombinoscope_profil-dog"
-                        src={animal.pictures}
+                        src={`${Url}/${animal.pictures}`}
                         alt="image chiens à adopter"
                      />
                   </a>

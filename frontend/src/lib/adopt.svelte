@@ -1,6 +1,9 @@
  <script>
    import { link } from "svelte-spa-router";
 
+   const Url = "http://localhost:8000";
+
+
    const nav_link = [
       {
          label: "Page single",
@@ -43,7 +46,7 @@ const get_animals = async () => {
        <img 
        
           class="trombinoscope_profil-cat"
-          src={animal.pictures}
+          src= {`${Url}/${animal.pictures}`}
           alt="image animals"
        />
     </a>
