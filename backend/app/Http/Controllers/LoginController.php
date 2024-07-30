@@ -9,17 +9,19 @@ use App\Providers\RouteServiceProvider;
 
 
 
-class LoginController extends Controller{
+class LoginController extends Controller
+ {
 
 
-public function show(){
+ public function show()
+    {
 
     return view('login');
 
     }
 
 
-    public function login(Request $request)
+ public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|string|email',
@@ -43,7 +45,7 @@ public function show(){
             ]
         ]);
     }
-    public function store(LoginRequest $request): RedirectResponse
+ public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
@@ -55,13 +57,13 @@ public function show(){
 
 
 
-    public function logout()
+ public function logout()
     {
         Auth::logout();
 
       return view('login');
     }
-    public function destroy(Request $request)
+ public function destroy(Request $request) 
     {
         Auth::guard('web')->logout();
 
@@ -71,7 +73,7 @@ public function show(){
 
         return view('login');
     }
-}
+ }
 
 
 

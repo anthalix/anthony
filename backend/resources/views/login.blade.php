@@ -15,8 +15,12 @@
     </head>
     <body>
 
-    <h1>  O'REFUGE Connection</h1>
+<div class="header">
+    <img class="logo2" src="{{ asset('assets/logo.png')}}" alt="Logo de l'entreprise" />
 
+
+    <h1>  O'REFUGE Connection</h1>
+    </div>
 <form action="{{ route('Send-login') }}" method="POST" class="mt-5">
 @csrf
 
@@ -56,6 +60,30 @@
 
 
 </form>
+
+
+<style>
+    .header{
+        display: flex;
+        justify-content: space-around;
+        width: 1170px;
+        margin: auto;
+        padding-right: 300px;
+        padding-left: 200px;
+    }
+
+.logo2 {
+width: 150px;
+height: 150px;
+}
+form{
+    width: 1100px;
+    padding-top: 50px;
+    margin: auto;
+}
+
+</style>
+
 <body>
 
 </html>

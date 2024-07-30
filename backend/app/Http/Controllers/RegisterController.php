@@ -12,22 +12,20 @@ use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
 
+class RegisterController extends Controller
+ {
 
 
-class RegisterController extends Controller{
+ public function show()
+  {
+
+  return view('register');
+
+  }
 
 
-
-
-public function show(){
-
-return view('register');
-
-}
-
-
-public function register(Request $request)
-{
+ public function register(Request $request)
+  {
     $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
@@ -40,9 +38,9 @@ public function register(Request $request)
         'password' => Hash::make($request->password),
     ]);
 
-return view('login');
+  return view('login');
 
-}
-}
+  }
+ }
 
 

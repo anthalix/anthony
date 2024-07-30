@@ -42,7 +42,7 @@
     </header>
     <div class="container mt-4 mb-4 bg-light">
         <h1 class="titre">Créer un nouvel animal</h1>
-        <form action="{{ route('animaux.add') }}" method="POST" enctype="multiport/form/data">
+        <form action="{{ route('animaux.add') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-select">
@@ -130,8 +130,11 @@
 
 
             <div class="form-select">
-                <label for="pictures"><strong>photo</strong></label>
-                <input type="text" class="form-control" name="pictures" id="pictures" value="">
+               
+
+                <label for="pictures"><strong>Photo</strong></label>
+        <input type="file" class="form-control" name="pictures" id="pictures" accept="image/jpeg">
+        
             </div>
 
 

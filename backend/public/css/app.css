@@ -3,6 +3,7 @@ body
     {
     text-align: center;
     background-color:#387959 ;
+    margin-bottom: 100px;
     }
 
 body1
@@ -23,6 +24,10 @@ h1
     color:#8f522b ;
 
 }
+form{
+
+  margin-bottom: 100px;
+}
 
 .form-control
    {
@@ -32,7 +37,7 @@ h1
    }
  @media screen and (max-width: 768px)
  {
-    .form-control
+  .form-control
      {
        width: 300px;
        font-size: 1rem;
@@ -146,7 +151,11 @@ justify-content: space-around;}
   {
     background-color:#af7c4a;
     margin-left: 20px;
+    margin-top: 20px;
+
+
     }
+
 
 a:hover
   {
@@ -167,6 +176,7 @@ a:hover
 {
 
     background-color: #8f522b;
+    margin-bottom: 100px;
 }
 
 .container
@@ -208,5 +218,10 @@ a:hover
           width: 600px;
           height: 300px;
           margin-left: 50px;
+    }
+    #myBtn{
+
+margin-bottom: 80px;
+
     }
 

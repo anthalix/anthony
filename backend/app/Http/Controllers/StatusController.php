@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 
 class StatusController extends Controller
-{
-    public function list()
+
+ {
+
+ public function list()
     {
         // récupérer toutes les tâches en BDD
         $breedInfo = DB::table('animals')
@@ -25,7 +27,7 @@ class StatusController extends Controller
         //* Laravel, quand il voit qu'on retourne un tableau dans une méthode de contrôleur va comprendre qu'on cherche à faire une API, et va automatiquement convertir le tableau en JSON.
     }
 
-    public function adoptAnimal($id)
+ public function adoptAnimal($id)
     {
         // Trouver l'animal par son ID
         $animal = Animal::find($id);
@@ -38,7 +40,7 @@ class StatusController extends Controller
     }
 
 
-    public function show($id)
+ public function show($id)
     {
     // Utilisation du Query Builder pour récupérer l'animal avec le filtre 'status' égal à 'adopted'
     $animal = DB::table('animals')
@@ -57,5 +59,5 @@ class StatusController extends Controller
     return $animal;
     }
 
-}
+ }
 

@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Animal;
 
 class DogController extends Controller
-{
-public function list()
+ {
+ public function list()
     {
 
         $breedInfo = DB::table('animals')
@@ -25,4 +25,4 @@ public function list()
 
 
 
-}
+ }

@@ -1,7 +1,8 @@
 
 
-$small-screen: 425px;
+$small-screen: 375px;
 $medium-screen:794.5px;
+$grand-screen:1440px;
 
 
 @mixin small-screen {
@@ -17,6 +18,11 @@ $medium-screen:794.5px;
 }
 @mixin large-screen {
   @media screen and (min-width: $medium-screen  )  {
+    @content;
+  }
+}
+@mixin gran-screen{
+  @media screen and (min-width: $grand-screen  )  {
     @content;
   }
 }

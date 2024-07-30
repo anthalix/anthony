@@ -2,6 +2,8 @@
   import { link } from "svelte-spa-router";
   import { Hamburger } from "svelte-hamburgers";
   import Menu from "./menu.svelte";
+  const Url = "http://localhost:8000";
+
 
   let open;
 
@@ -37,7 +39,7 @@
 
 <header>
   <div id="mainNav">
-    <img class="logo" src="./src/assets/logo.png" alt="Logo de l'entreprise" />
+    <img class="logo" src="{Url}/assets/logo.png" alt="Logo de l'entreprise" />
 
     <ul id="navbar-nav">
       <li class="navbar-link">

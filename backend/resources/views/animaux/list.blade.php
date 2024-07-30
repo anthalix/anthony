@@ -79,8 +79,13 @@
                 <th>Photo/Url</th>
                 <th>Actions</th>
             </tr>
+          
+
         </thead>
         <br>
+      
+
+    
         <tbody>
             @foreach ($animaux as $animal)
             <tr>
@@ -103,7 +108,6 @@
                 <!-- Afficher l'image -->
                 <img src="{{ asset($animal->pictures) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
             
-            </td>
                 </td>
                 <td>
                     <a href="{{ route('animaux.edit', ['id' => $animal->id]) }}" class="btn btn-primary mb-1">Modifier</a>

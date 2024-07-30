@@ -51,7 +51,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('animaux.update', ['id' => $animal->id]) }}" >
+    <form method="POST" action="{{ route('animaux.update', ['id' => $animal->id]) }} "enctype="multipart/form-data" >
         @csrf
         @method('PUT')
 
@@ -136,8 +136,15 @@
         <br>
 
         <div class="form-select">
-            <label for="pictures"><strong>Url de la photo :</strong></label>
-            <input type="text" id="pictures"  class="form-control" name="pictures" value="{{ $animal->pictures }}">
+        <label for="pictures"><strong>Photo actuelle</strong></label>
+        <br>
+        @if($animal->pictures)
+            <img src="{{ asset($animal->pictures) }}" alt="Photo de {{ $animal->name }}" style="max-width: 200px; max-height: 200px;">
+        @else
+            <p>Aucune photo disponible</p>
+        @endif
+            <label for="pictures"></label>
+        <input type="file" id="pictures" class="form-control" name="pictures" value= accept="image/jpeg">
         </div>
         <br>
 
@@ -146,6 +153,15 @@
         </div>
     </form>
 </div>
+<style>
+#pictures{
+
+
+    width: 500px;
+}
+
+
+</style>
 
 </body>
 </html>
