@@ -16,8 +16,8 @@ public function list()
           ->join('breeds', 'animal_breed.breed_id', '=', 'breeds.id')
           ->select('animals.*', 'breeds.name AS breed_name')
           ->where('specie_id', '2')
-          ->where('status', 'Adoptable')
-
+          
+          ->whereIn('status', ['Adoptable','SOS Urgent'])
           ->get();
 
 

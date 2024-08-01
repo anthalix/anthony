@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Breed;
 use App\Models\Animal;
+use App\Models\Specie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str; 
+use Illuminate\Support\Facades\DB;
 
 class AnimalController extends Controller
  {
@@ -43,6 +44,8 @@ class AnimalController extends Controller
         $animal->ok_kid = $request->input('ok_kid');
         $animal->name_of_adopter = $request->input('name_of_adopter');
 
+        
+
         if ($request->hasFile('pictures')) {
            
             $file = $request->file('pictures');
@@ -55,10 +58,46 @@ class AnimalController extends Controller
             $file->move(public_path('assets'), $filename);
 
             $animal->pictures = $filePath;
-            
+            }
+            if ($request->hasFile('pictures2')) {
+           
+                $file = $request->file('pictures2');
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
+                $filePath = 'assets/' . $filename;
+    
+    
+                $file->move(public_path('assets'), $filename);
+    
+                $animal->pictures2 = $filePath;
+            }
+            if ($request->hasFile('pictures3')) {
+           
+                $file = $request->file('pictures3');
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
+                $filePath = 'assets/' . $filename;
+    
+    
+                $file->move(public_path('assets'), $filename);
+    
+                $animal->pictures3 = $filePath;
+            }
 
-        }
+            $new_specie_name = $request->input('new_specie');
 
+            // Vérifier et créer l'espèce si elle n'existe pas
+            $specie = Specie::where('name', $new_specie_name)->first();
+            if (!$specie) {
+                $specie = new Specie();
+                $specie->name = $new_specie_name;
+                $specie->save();
+            }
+        
+            // Assigner l'ID de l'espèce à l'animal
+            $animal->specie_id = $specie->id;
 
         $animal->save();
 
@@ -86,9 +125,7 @@ class AnimalController extends Controller
    public function update(Request $request, $id)
     {
         $animal = Animal::findOrFail($id);
-        $name = $request->input('name');
         $age = $request->input('age');
-        $sex = $request->input('sex');
         $size = $request->input('size');
         $description = $request->input('description');
         $status = $request->input('status');
@@ -97,9 +134,7 @@ class AnimalController extends Controller
         $ok_kid = $request->has('ok_kid') ? true : false;
         $name_of_adopter = $request->input('name_of_adopter');
 
-        $animal->name = $name;
         $animal->age = $age;
-        $animal->sex = $sex;
         $animal->size = $size;
         $animal->description = $description;
         $animal->status = $status;
@@ -123,6 +158,42 @@ class AnimalController extends Controller
             // Déplacer le fichier vers le répertoire public/assets
             $file->move(public_path('assets'), $filename);
             $animal->pictures = $filePath;
+
+        }
+        if ($request->hasFile('pictures2')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($animal->pictures && file_exists(public_path($animal->pictures))) {
+                unlink(public_path($animal->pictures));
+            }
+
+            
+            $file = $request->file('pictures2');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
+            $filePath = 'assets/' . $filename;
+
+            // Déplacer le fichier vers le répertoire public/assets
+            $file->move(public_path('assets'), $filename);
+            $animal->pictures2 = $filePath;
+
+        }
+        if ($request->hasFile('pictures3')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($animal->pictures && file_exists(public_path($animal->pictures))) {
+                unlink(public_path($animal->pictures));
+            }
+
+            
+            $file = $request->file('pictures3');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
+            $filePath = 'assets/' . $filename;
+
+            // Déplacer le fichier vers le répertoire public/assets
+            $file->move(public_path('assets'), $filename);
+            $animal->pictures3 = $filePath;
 
         }
 

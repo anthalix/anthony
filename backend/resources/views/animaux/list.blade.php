@@ -107,6 +107,10 @@
                 {{ str_replace('public/', '', $animal->pictures) }}<br>
                 <!-- Afficher l'image -->
                 <img src="{{ asset($animal->pictures) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
+                <img src="{{ asset($animal->pictures2) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
+
+                <img src="{{ asset($animal->pictures3) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
+
             
                 </td>
                 <td>

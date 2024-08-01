@@ -385,9 +385,7 @@ footer {
     margin-bottom: 0;
   }
 }
-
-
-  .link {
+.link {
     display: flex;
     text-decoration-line: none;
     font-family: 'bebas+neue';
@@ -401,7 +399,7 @@ footer {
     
   }
 
-  .link>a {
+.link>a {
 
     color: $color;
     text-decoration: none;
@@ -412,16 +410,13 @@ footer {
     padding: 0 10px
   }
 
-  .link>a:hover {
+.link>a:hover {
 
     color: white;
     text-decoration: none;
 
 
   }
-
-
-
 .coordonnées {
   display: flex;
   color: $color;
@@ -445,7 +440,6 @@ footer {
 
 
 }
-
 .cta {
   transition: all 0.8s ease-in-out;
   display: flex;
@@ -474,14 +468,12 @@ footer {
 
   }
 }
-
 .cta-title {
   border-radius: 25px 25px 0 0;
   color: white;
   font-size: 1.5rem;
 
 }
-
 .cta:hover {
   transform-origin: right;
 
@@ -491,7 +483,6 @@ footer {
     transform: scale(1.2);
   }
 }
-
 .list-hours {
   display: flex;
   flex-direction: column;
@@ -519,7 +510,6 @@ footer {
 
 
 }
-
 .list-hours .list-hours-item {
   display: flex;
   font-family: 'luciole';
@@ -529,7 +519,6 @@ footer {
   justify-content: space-between;
   margin-bottom: 10px;
 }
-
 .list-hours-item-day {
   font-weight: bold;
   display: flex;
@@ -560,7 +549,6 @@ footer {
     height: auto;
   }
 }
-
 .polaroid-images-home {
 
   margin: 0 0 10px;
@@ -587,7 +575,6 @@ footer {
   }
 
 }
-
 .polaroid-images-home-cat {
 
 
@@ -616,7 +603,6 @@ footer {
   }
 
 }
-
 .polaroid-images-home img {
   display: block;
   width: inherit;
@@ -636,7 +622,6 @@ footer {
   }
 
 }
-
 .polaroid-images-home-cat img {
   display: block;
   width: inherit;
@@ -656,7 +641,6 @@ footer {
   }
 
 }
-
 .title1 {
   background-color: $color-bg;
   width: 100px;
@@ -668,7 +652,6 @@ footer {
   color: $color-text-init;
   position: absolute;
 }
-
 .presentation {
   width: 500px;
   height: 260px;
@@ -1049,7 +1032,7 @@ img{
 
 
     li {
-      width: 35px;
+      width: 70px;
       margin-left: 25px;
 
 
@@ -1089,20 +1072,13 @@ img{
 
 .icons_img {
   width: 70px;
-  background-color: aliceblue;
-  margin-right: 35px;
 
  
 @include gran-screen{
 
-width: 100px;
 
 }
-  @include large-screen {
-    width: 30px;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
+  
 
   @include medium-screen {
     width: 30px;
@@ -1512,9 +1488,11 @@ textarea {
 
 .trombinoscope-adopt {
   display: flex;
+
   flex-wrap: wrap;
   justify-content: space-around;
   margin:auto;
+  padding: 50px;
   width: 85%;
   height:auto;
   background-image: url("http://localhost:8000/assets/blue-sea.jpg");

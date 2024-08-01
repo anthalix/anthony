@@ -17,7 +17,7 @@ class DogController extends Controller
         ->select('animals.*', 'breeds.name AS breed_name')
         ->where('specie_id', '1')
 
-        ->where('status', 'Adoptable')
+        ->whereIn('status', ['Adoptable','SOS Urgent'])
         ->get();
 
         return response()->json($breedInfo);

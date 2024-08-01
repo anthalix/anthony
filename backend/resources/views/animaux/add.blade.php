@@ -54,10 +54,12 @@
                 <label for="specie_id"><strong>Espèce :</strong></label>
                 <select id="specie_id" class="form-control" name="specie_id" aria-placeholder="Choisir" autofocus="true">
                     <option value="0">Choisir</option>
-
                     <option value="1">Chien</option>
                     <option value="2">Chat</option>
-                </select>
+                    <option value="3">Autre</option>
+                </select><br>
+                <input class="form-control" type="text" id="new_specie" name="new_specie" placeholder="Nouvelle espèce" style="display: none;">
+
             </div>
 
             <div class="form-select">
@@ -130,11 +132,21 @@
 
 
             <div class="form-select">
-               
+
 
                 <label for="pictures"><strong>Photo</strong></label>
-        <input type="file" class="form-control" name="pictures" id="pictures" accept="image/jpeg">
-        
+                <input type="file" class="form-control" name="pictures" id="pictures" accept="image/jpeg">
+
+
+
+                <label for="pictures2"><strong>Photo2</strong></label>
+                <input type="file" class="form-control" name="pictures2" id="pictures2" accept="image/jpeg">
+
+                <label for="pictures3"><strong>Photo3</strong></label>
+                <input type="file" class="form-control" name="pictures3" id="pictures3" accept="image/jpeg">
+
+
+
             </div>
 
 
@@ -150,6 +162,26 @@
 
 
     </div>
+    <script>
+        const specieSelect = document.getElementById('specie_id');
+        const newSpecieInput = document.getElementById('new_specie');
+        const errorMessage = document.createElement('p'); // Créer un élément pour afficher le message d'erreur
+
+        errorMessage.style.color = 'red'; // Style pour le message d'erreur
+
+        specieSelect.addEventListener('change', () => {
+            if (specieSelect.value === '3') {
+                newSpecieInput.style.display = 'block';
+                errorMessage.textContent = "Veuillez renseigner le nom de la nouvelle espèce.";
+                newSpecieInput.parentNode.appendChild(errorMessage); // Ajouter le message après le champ d'entrée
+            } else {
+                newSpecieInput.style.display = 'none';
+                if (errorMessage.parentNode) { // Si le message existe déjà, on le supprime
+                    errorMessage.parentNode.removeChild(errorMessage);
+                }
+            }
+        });
+    </script>
 
 </body1>
 

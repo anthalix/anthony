@@ -10,8 +10,6 @@
 
    const Url = "http://localhost:8000";
 
-
- 
    const get_dogs = async () => {
       const response = await fetch("http://127.0.0.1:8000/api/dogs");
 
@@ -28,7 +26,6 @@
    };
 */
    let breeds = [];
-
 </script>
 
 <h1 class="pet">Nos Chiens</h1>
@@ -96,21 +93,8 @@
          <p>Chargement des chiens...</p>
       {:then dogs}
          {#each dogs as animal}
-            {#if selectedSexe !== "Sexe" ||
-             selectedTaille !== "Taille" ||
-              selectedAge !== "Age" || 
-              selectedRace !== "Race"}
-
-               {#if (selectedSexe === "Sexe" ||
-                animal.sex === selectedSexe) 
-               && (selectedTaille === "Taille" ||
-                animal.size === selectedTaille)
-                && (selectedAge === "Age" ||
-                 (selectedAge === "1" && animal.age <= 1) ||
-                  (selectedAge === "2" && animal.age >= 2 && animal.age <= 5) ||
-                   (selectedAge === "3" && animal.age >= 6))
-                 && (selectedRace === "Race" ||
-                  animal.breed_name === selectedRace)}
+            {#if selectedSexe !== "Sexe" || selectedTaille !== "Taille" || selectedAge !== "Age" || selectedRace !== "Race"}
+               {#if (selectedSexe === "Sexe" || animal.sex === selectedSexe) && (selectedTaille === "Taille" || animal.size === selectedTaille) && (selectedAge === "Age" || (selectedAge === "1" && animal.age <= 1) || (selectedAge === "2" && animal.age >= 2 && animal.age <= 5) || (selectedAge === "3" && animal.age >= 6)) && (selectedRace === "Race" || animal.breed_name === selectedRace)}
                   <div class="polaroid-images">
                      <a
                         href="/ficheAnimal/{animal.id}"
@@ -126,25 +110,39 @@
                      </a>
                   </div>
                {/if}
-            {:else if selectedSexe === "Sexe"&&
-             selectedTaille === "Taille"&& 
-             selectedAge === "Age"&&
-              selectedRace === "Race"}
-
-               <div class="polaroid-images">
-                  <a
-                     href="/ficheAnimal/{animal.id}"
-                     title={animal.name}
-                     use:link
-                  >
-                     <!-- svelte-ignore a11y-img-redundant-alt -->
-                     <img
-                        class="trombinoscope_profil-dog"
-                        src={`${Url}/${animal.pictures}`}
-                        alt="image chiens à adopter"
-                     />
-                  </a>
-               </div>
+            {:else if selectedSexe === "Sexe" && selectedTaille === "Taille" && selectedAge === "Age" && selectedRace === "Race"}
+               {#if animal.status === "SOS Urgent"}
+                  <figure class="polaroid-images">
+                     <a
+                        href="/ficheAnimal/{animal.id}"
+                        title={animal.name}
+                        use:link
+                     >
+                        <!-- svelte-ignore a11y-img-redundant-alt -->
+                        <img
+                           class="trombinoscope_profil-dog"
+                           src={`${Url}/${animal.pictures}`}
+                           alt="image chiens à adopter"
+                        />
+                     </a>
+                     <figcaption>SOS Urgent</figcaption>
+                  </figure>
+               {:else}
+                  <div class="polaroid-images">
+                     <a
+                        href="/ficheAnimal/{animal.id}"
+                        title={animal.name}
+                        use:link
+                     >
+                        <!-- svelte-ignore a11y-img-redundant-alt -->
+                        <img
+                           class="trombinoscope_profil-dog"
+                           src={`${Url}/${animal.pictures}`}
+                           alt="image chiens à adopter"
+                        />
+                     </a>
+                  </div>
+               {/if}
             {/if}
          {/each}
       {:catch error}
@@ -152,3 +150,22 @@
       {/await}
    </div>
 </div>
+
+<style>
+   figure {
+      position: relative;
+   }
+
+   figcaption {
+      position: absolute;
+      color: rgb(252, 249, 249);
+      background-color: rgb(248, 7, 7);
+      right: 0;
+      top: 25%;
+
+      transform: rotate(+45deg); /* Inclinaison du texte */
+      transform-origin: right;
+      padding: 5px 15px;
+      border-radius: 5px;
+   }
+</style>
