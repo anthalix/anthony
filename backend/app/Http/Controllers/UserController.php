@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
- { 
- public function list()
-    {
-        $users= User::all();
+{
+   public function list()
+   {
+      $users = User::all();
 
-        return view('users.users-list', ['users' => $users]);
-    }
- public function delete($id){
+      return view('users.users-list', ['users' => $users]);
+   }
+   public function delete($id)
+   {
 
-    $user = User::find($id);
+      $user = User::find($id);
 
-    $user->delete();
+      $user->delete();
 
-    return redirect()->route('users.list')->with('success', "Votre {$user->name} a bien été supprimé.");
- }
-
- }
+      return redirect()->route('users.list')->with('success', "Votre {$user->name} a bien été supprimé.");
+   }
+}

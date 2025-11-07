@@ -7,22 +7,35 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Animal;
 
 class DogController extends Controller
- {
- public function list()
+{
+    public function list()
     {
+        $dogs = DB::table('animals')
+            ->join('animals_breeds', 'animals_breeds.animals_id', '=', 'animals.id')
+            ->join('breeds', 'animals_breeds.breeds_id', '=', 'breeds.id')
+            ->select('animals.*', 'breeds.name AS breed_name')
+            ->where('specie_id', 1)
+            ->whereIn('status', ['disponible', 'urgent'])
+            ->orderByRaw("FIELD(animals.status, 'urgent', 'disponible')")
+            ->get()
+            ->map(function ($dog) {
+                // 🔹 On récupère la première image associée à cet animal
+                $firstImage = DB::table('animal_images')
+                    ->where('animal_id', $dog->id)
+                    ->orderBy('order')
+                    ->first();
 
-        $breedInfo = DB::table('animals')
-        ->join('animal_breed', 'animal_breed.animal_id', '=', 'animals.id')
-        ->join('breeds', 'animal_breed.breed_id', '=', 'breeds.id')
-        ->select('animals.*', 'breeds.name AS breed_name')
-        ->where('specie_id', '1')
+                // 🔹 Si une image existe → on ajoute son URL complète
+                if ($firstImage) {
+                    $dog->thumbnail = asset('assets/' . $firstImage->filename);
+                } else {
+                    // 🔹 Sinon → image par défaut
+                    $dog->thumbnail = asset('assets/default.jpg');
+                }
 
-        ->whereIn('status', ['Adoptable','SOS Urgent'])
-        ->get();
+                return $dog;
+            });
 
-        return response()->json($breedInfo);
+        return response()->json($dogs);
     }
-
-
-
- }
+}

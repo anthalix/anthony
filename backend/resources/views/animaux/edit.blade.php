@@ -15,32 +15,37 @@
     </script>
 
 </head>
-<body1>
+
+<body>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <h1 class="navbar-brand fs-1">O'refuge</h1>
+                <h1 class="site">O'refuge</h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse"
+                    style="margin:auto 50px;" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="/animaux">Liste animaux</a>
+                            <a class="nav-link fs-5" aria-current="page" href="/animaux">Liste animaux</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="/forms">Formulaires</a>
+                            <a class="nav-link fs-5" aria-current="page" href="/forms">Formulaires</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="/logout">Déconnexion</a>
+                            <a class="nav-link fs-5" aria-current="page" href="/logout">Déconnexion</a>
+                        </li>
+                        <li class="nav-item_auth ">
+                            <div class="nav-link_auth fs-5">Connecté en tant que {{ auth()->user()->email }}</div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container mt-4 mb-4 bg-light">
-        <h3 class="titre">Modifier un animal</h3>
+    <div class="container">
+        <h1>Modifier un animal</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -75,7 +80,7 @@
             <div class="form-select">
                 <label for="size"><strong>Taille :</strong></label>
                 <select type="text" id="size" class="form-control" name="size" autofocus="true">
-                    <option value="{{ $animal->size }}">{{ $animal->size }}</option>
+                    <option value="{{ $animal->taille }}">{{ $animal->taille }}</option>
                     <option value="Petit">Petit</option>
                     <option value="Moyen">Moyen</option>
                     <option value="Grand">Grand</option>
@@ -93,68 +98,56 @@
                 <label for="status"><strong>Status :</strong></label>
                 <select type="text" id="status" class="form-control" name="status" autofocus="true">
                     <option value="{{ $animal->status }}">{{ $animal->status }}</option>
-                    <option value="Adopté">Adopté</option>
-                    <option value="Adoptable">Adoptable</option>
-                    <option value="SOS Urgent">SOS Urgent</option>
+                    <option value="adopté">Adopté</option>
+                    <option value="disponible">Disponible</option>
+                    <option value="urgent">Urgent</option>
                 </select>
             </div>
             <br>
 
             <div class="form-check">
                 <label for="ok_cat" class="form-check-label"><strong>OK Chat</strong></label>
-                <input type="checkbox" id="ok_cat" class="form-check-input" name="ok_cat" value="1" {{ $animal->ok_cat === 1 ? 'checked' : '' }}>
+                <input type="checkbox" id="ok_cat" class="form-check-input" name="ok_cat" value="1" {{ $animal->cat === 1 ? 'checked' : '' }}>
             </div>
             <br>
 
             <div class="form-check">
                 <label for="ok_dog" class="form-check-label"><strong>OK Chien</strong></label>
-                <input type="checkbox" id="ok_dog" class="form-check-input" name="ok_dog" value="1" {{ $animal->ok_dog === 1 ? 'checked' : '' }}>
+                <input type="checkbox" id="ok_dog" class="form-check-input" name="ok_dog" value="1" {{ $animal->dog === 1 ? 'checked' : '' }}>
             </div>
             <br>
 
             <div class="form-check">
                 <label for="ok_kid" class="form-check-label"><strong>OK Enfant</strong></label>
-                <input type="checkbox" id="ok_kid" class="form-check-input" name="ok_kid" value="1" {{ $animal->ok_kid === 1 ? 'checked' : '' }}>
+                <input type="checkbox" id="ok_kid" class="form-check-input" name="ok_kid" value="1" {{ $animal->child=== 1 ? 'checked' : '' }}>
             </div>
             <br>
 
-            <div class="form-select">
-                <label for="name_of_adopter"><strong>Nom de l'adopteur :</strong></label>
-                <input type="text" id="name_of_adopter" class="form-control" name="name_of_adopter" value="{{ $animal->name_of_adopter }}">
-            </div>
-            <br>
 
             <div class="form-select">
-
-                <label for="pictures"><strong>Photos actuelles</strong></label>
-
-
+                <label for="images"><strong>Photos actuelles</strong></label>
                 <div class="select-img">
 
 
 
-                    <div>
-                        <img src="{{ asset($animal->pictures) }}" alt="Photo de {{ $animal->name }}" style="max-width: 200px; max-height: 200px;">
-                        
-                        
-                        <input type="file" id="pictures" class="form-control" name="pictures" value=accept="image/jpeg" placeholder="photo1">
-                    </div>
+                    <div class="thumbnail">
+                        @foreach($animal->images as $img)
+                        <div class="thumbnail_animal">
+                            <img src=" {{ asset('assets/' . $img->filename) }}" width="100">
+                            <div class="thumbnail_updated">
+                                <input type="file" name="replace_image[{{ $img->id }}]">
 
-                    <div>
-
-                        <img src="{{ asset($animal->pictures2) }}" alt="Photo de {{ $animal->name }}" style="max-width: 200px; max-height: 200px;">
-                        
-                        <input type="file" id="pictures" class="form-control" name="pictures2" value=accept="image/jpeg" placeholder="photo2">
-                    </div>
-
-                    <div>
-                        <img src="{{ asset($animal->pictures3) }}" alt="Photo de {{ $animal->name }}" style="max-width: 200px; max-height: 200px;">
-                
-
-                        <input type="file" id="pictures" class="form-control" name="pictures3" value=accept="image/jpeg" placeholder="photo3">
+                                <button type="submit" name="delete_image_id" value="{{ $img->id }}">
+                                    Supprimer
+                                </button>
+                            </div>
+                        </div>
+                        @endforeach
 
                     </div>
-
+                </div>
+                <div id="image-input-container">
+                    <button type="button" id="add-image-btn" onclick="showFileInput()">Ajouter une image</button>
                 </div>
 
             </div>
@@ -166,6 +159,15 @@
         </form>
     </div>
 
+    <script>
+        function showFileInput() {
+            const container = document.getElementById('image-input-container');
+            container.innerHTML = `
+        <input type="file" name="images[]" multiple>
+    `;
+        }
+    </script>
+
     <style>
         #pictures {
             width: 300px;
@@ -175,19 +177,56 @@
             padding-bottom: 20px;
         }
 
+        .thumbnail {
+            display: flex;
+            flex-direction: row;
+
+
+
+
+        }
+
+        .thumbnail_animal {
+            background-color: rgba(39, 66, 82, 0.978);
+            box-shadow: 2px 2px 10px 1px white;
+            margin-left: 10px;
+            width: min-content;
+        }
+
+        .thumbnail_updated {
+            font-size: 0.8rem;
+
+            display: flex;
+            flex-direction: column;
+            ;
+        }
+
+        #image-input-container {
+            margin: auto auto;
+        }
+
+        #thumbnail {
+            height: min-content;
+            margin: auto 25px;
+
+        }
+
         .select-img {
 
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            margin: auto;
+            margin-right: auto;
+
+
+
         }
 
 
-        img{margin : 15px;}
-
+        img {
+            margin: 15px;
+        }
     </style>
 
-    </body>
+</body>
 
 </html>

@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Breed extends Model
 {
+    public $timestamps = false; // ✅ empêche Eloquent d'utiliser created_at / updated_at
     use HasFactory;
 
 
     public function animals()
     {
-        return $this->belongsToMany(Animal::class, 'animal_breed');
+        return $this->belongsToMany(Animal::class, 'animals_breeds', 'breeds_id', 'animals_id');
     }
 }

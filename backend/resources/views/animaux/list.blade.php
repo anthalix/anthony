@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <title>Liste des animaux à adopter</title>
@@ -20,27 +20,32 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <h1 class="navbar-brand fs-1" href="animaux">O'refuge</h1>
+                <h1 class="site">O'refuge</h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" style="margin:auto 50px;" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link fs-5" aria-current="page" href="/users-list">Utilisateurs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-5" aria-current="page" href="/forms">Formulaires</a>
+                            <a class="nav-link fs-5" aria-current="page" href="/messages">Contacts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5" href="show-register">S'enregistrer</a>
                         </li>
 
                         @auth
                         <!-- L'utilisateur est connecté, on affiche les éléments pour utilisateur connecté -->
-                        <li class="nav-item">
-                            <div class="nav-link fs-5">Connecté en tant que {{ auth()->user()->email }}</div>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link fs-5" aria-current="page" href="/logout">Déconnexion</a>
                         </li>
+                        <li class="nav-item_auth ">
+                            <div class="nav-link_auth fs-5">Connecté en tant que {{ auth()->user()->email }}</div>
+                        </li>
+
 
                         @else
                         <!-- L'utilisateur n'est pas connecté, on affiche les éléments pour utilisateur non connecté -->
@@ -48,86 +53,61 @@
                             <a class="nav-link  fs-5" aria-current="page" href="login">Se connecter</a>
                         </li>
 
+
                         @endauth
 
-                        <li class="nav-item">
-                            <a class="nav-link fs-5" href="show-register">S'enregistrer</a>
-                        </li>
+
+
+
                     </ul>
                 </div>
 
             </div>
         </nav>
     </header>
-    <h1>Liste des animaux à adopter</h1><br>
-    <div class="grid col-2 "><a href="{{ route('animaux.add') }}" class="btn btn-success">Ajouter un animal</a></div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Espèce</th>
-                <th>Race</th>
-                <th>Âge</th>
-                <th>Sexe</th>
-                <th>Taille</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>OK Chat</th>
-                <th>OK Chien</th>
-                <th>OK Enfant</th>
-                <th>Nom de l'adopteur</th>
-                <th>Photo/Url</th>
-                <th>Actions</th>
-            </tr>
-          
 
-        </thead>
-        <br>
-      
+    <h1>Liste des animaux à adopter <div>
+            <a href="{{ route('animaux.add') }}" class="btn ">
+                Ajouter un animal
+            </a>
+        </div>
+    </h1>
 
-    
-        <tbody>
-            @foreach ($animaux as $animal)
-            <tr>
-                <td><strong>{{ $animal->name }}</strong></td>
-                <td>{{ $animal->specie_name }}</td>
-                <td>{{ $animal-> breed_name}}</td>
-                <td>{{ $animal->age }}</td>
-                <td>{{ $animal->sex }}</td>
-                <td>{{ $animal->size }}</td>
-                <td>
-                    <p class="text-truncate" style="max-width: 200px;">{{ $animal->description }}</p>
-                </td>
-                <td>{{ $animal->status }}</td>
-                <td>{{ $animal->ok_cat === 1 ? 'True' : ($animal->ok_cat === 2? 'False' : 'inconnu') }}</td>
-                <td>{{ $animal->ok_dog === 1 ? 'True' : ($animal->ok_dog === 2 ? 'False' : 'inconnu')}}</td>
-                <td>{{ $animal->ok_kid === 1 ? 'True' : ($animal->ok_kid === 2 ? 'False' : 'inconnu')}}</td>
-                <td>{{ $animal->name_of_adopter }}</td>
-                <td>
-                {{ str_replace('public/', '', $animal->pictures) }}<br>
-                <!-- Afficher l'image -->
-                <img src="{{ asset($animal->pictures) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
-                <img src="{{ asset($animal->pictures2) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
 
-                <img src="{{ asset($animal->pictures3) }}" alt="Photo de {{ $animal->name }}" style="max-width: 100px; margin-top: 5px;">
 
-            
-                </td>
-                <td>
-                    <a href="{{ route('animaux.edit', ['id' => $animal->id]) }}" class="btn btn-primary mb-1">Modifier</a>
+    <div class="container ">
 
-                    <form action="{{ route('animaux.delete', ['id' => $animal->id]) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+
+        @foreach ($animaux as $animal)
+
+
+        <div class="card">
+
+            <strong>{{ $animal->name }}</strong>
+
+            <img src="{{ $animal->first_image_url }}" alt="Photo de {{ $animal->name }}">
+            <div class="infos-animal">
+                <p> {{ $animal->specie_name }} : {{ $animal-> breed_name}}</p>
+                <p> {{ $animal->sex }} de {{ $animal->age }} ans</p>
+
+            </div>
+            <div class=actions>
+                <p> <a href="{{ route('animaux.edit', ['id' => $animal->id]) }}" class="btn ">Modifier</a>
+
+                <p>
+                <form action="{{ route('animaux.delete', ['id' => $animal->id]) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+                </p>
+            </div>
+        </div>
+        @endforeach
+
+    </div>
     <div class="d-grid col-11 d-md-flex justify-content-md-start fixed-bottom ">
-        <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-warning d-flex justify-content-end" style="color:white;">Top</button>
+        <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-primary d-flex " style="font-size :2rem ; padding:  0 15px">top</button>
     </div>
 
 
@@ -140,7 +120,7 @@
 
         function scrollFunction() {
             var mybutton = document.getElementById("myBtn");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
                 mybutton.style.display = "block";
             } else {
                 mybutton.style.display = "none";

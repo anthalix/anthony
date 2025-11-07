@@ -20,28 +20,33 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <h1 class="navbar-brand fs-1">O'refuge</h1>
+                <h1 class="site">O'refuge</h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse"
+                    style="margin:auto 50px;" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="/animaux">liste animaux</a>
+                            <a class="nav-link  fs-5" aria-current="page" href="/animaux">liste animaux</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="/forms">Formulaires</a>
+                            <a class="nav-link  fs-5" aria-current="page" href="/forms">Formulaires</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  active fs-5" aria-current="page" href="/logout">Déconnexion</a>
+                            <a class="nav-link  fs-5" aria-current="page" href="/logout">Déconnexion</a>
+                        </li>
+                        <li class="nav-item_auth ">
+                            <div class="nav-link_auth fs-5">Connecté en tant que {{ auth()->user()->email }}</div>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container mt-4 mb-4 bg-light">
-        <h1 class="titre">Créer un nouvel animal</h1>
+    <h1>Créer un nouvel animal</h1>
+
+    <div class="container">
         <form action="{{ route('animaux.add') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -50,17 +55,29 @@
                 <input type="text" class="form-control" name="name" id="name" value="">
             </div>
 
+
+
             <div class="form-select">
                 <label for="specie_id"><strong>Espèce :</strong></label>
-                <select id="specie_id" class="form-control" name="specie_id" aria-placeholder="Choisir" autofocus="true">
+
+                <select id="specie_id" class="form-control" name="specie_id">
                     <option value="0">Choisir</option>
                     <option value="1">Chien</option>
                     <option value="2">Chat</option>
-                    <option value="3">Autre</option>
-                </select><br>
-                <input class="form-control" type="text" id="new_specie" name="new_specie" placeholder="Nouvelle espèce" style="display: none;">
+                    <option value="3">Nouvelle espèce</option>
+                </select>
 
+                <input
+                    class="form-control"
+                    type="text"
+                    id="new_specie"
+                    name="new_specie"
+                    placeholder="Entrez la nouvelle espèce"
+                    style="display: none;" />
             </div>
+            <p id="error-message" style="color: red; display: none; font-size: 1.2rem; margin-top: 5px;">
+                Veuillez renseigner le nom de la nouvelle espèce.
+            </p>
 
             <div class="form-select">
                 <label for="age"><strong>Âge :</strong></label>
@@ -84,9 +101,9 @@
 
                     <option value="0">Choisir</option>
 
-                    <option value="Petit">Petit</option>
-                    <option value="Moyen">Moyen</option>
-                    <option value="Grand">Grand</option>
+                    <option value="petite">Petit</option>
+                    <option value="moyenne">Moyen</option>
+                    <option value="grande">Grand</option>
                 </select>
             </div>
 
@@ -100,63 +117,48 @@
                 <select id="status" class="form-control" name="status" autofocus="true">
                     <option value="0">Choisir</option>
 
-                    <option value="Adopté">Adopté</option>
-                    <option value="Adoptable">Adoptable</option>
-                    <option value="SOS Urgent">SOS Urgent</option>
+                    <option value="disponible">Disponible</option>
+                    <option value="urgent">Urgent</option>
+                    <option value="adopté">Adopté</option>
                 </select>
             </div>
             <br>
 
             <div class="form-check ">
-                <label for="ok_cat" class="form-check-label"><strong>OK Chat</strong></label>
-                <input type="checkbox" class="form-check-input" name="ok_cat" id="ok_cat" value="1">
+                <label for="cat" class="form-check-label"><strong>OK Chat</strong></label>
+                <input type="hidden" name="cat" value="0">
+                <input type="checkbox" class="form-check-input" name="cat" id="cat" value="1">
             </div>
             <br>
 
             <div class="form-check ">
-                <label for="ok_dog" class="form-check-label"><strong>OK Chien</strong></label>
-                <input type="checkbox" class="form-check-input" name="ok_dog" id="ok_dog" value="1">
+                <label for="dog" class="form-check-label"><strong>OK Chien</strong></label>
+                <input type="hidden" name="dog" value="0">
+                <input type="checkbox" class="form-check-input" name="dog" id="dog" value="1">
             </div>
             <br>
 
             <div class="form-check ">
-                <label for="ok_kid" class="form-check-label"><strong>OK Enfant</strong></label>
-                <input type="checkbox" class="form-check-input" name="ok_kid" id="ok_kid" value="1">
+                <label for="child" class="form-check-label"><strong>OK Enfant</strong></label>
+                <input type="hidden" name="child" value="0">
+                <input type="checkbox" class="form-check-input" name="child" id="child" value="1">
             </div>
             <br>
 
+
             <div class="form-select">
-                <label for="name_of_adopter"><strong>Nom de l'adopteur :</strong></label>
-                <input type="text" class="form-control" name="name_of_adopter" id="name_of_adopter" value="">
+                <label for="images">Images :</label>
+                <input type="file" class="form-control" name="images[]" multiple>
             </div>
 
 
             <div class="form-select">
-
-
-                <label for="pictures"><strong>Photo</strong></label>
-                <input type="file" class="form-control" name="pictures" id="pictures" accept="image/jpeg">
-
-
-
-                <label for="pictures2"><strong>Photo2</strong></label>
-                <input type="file" class="form-control" name="pictures2" id="pictures2" accept="image/jpeg">
-
-                <label for="pictures3"><strong>Photo3</strong></label>
-                <input type="file" class="form-control" name="pictures3" id="pictures3" accept="image/jpeg">
-
-
-
-            </div>
-
-
-            <div class="form-select">
-                <label for="breed_name"><strong>Race</strong></label>
-                <input type="text" class="form-control" name="breed_name" id="breed_name" value="">
-            </div>
+                <label for="breeds_name"><strong>Race</strong></label>
+                <input type="text" class="form-control" placeholder="entrez la race" name="breeds_name" id="breeds_name" value="">
+            </div><br />
 
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-primary">Créer</button>
+                <button type="submit" class="btn btn-primary fs-2">Créer</button>
             </div>
         </form>
 
@@ -165,23 +167,26 @@
     <script>
         const specieSelect = document.getElementById('specie_id');
         const newSpecieInput = document.getElementById('new_specie');
-        const errorMessage = document.createElement('p'); // Créer un élément pour afficher le message d'erreur
-
-        errorMessage.style.color = 'red'; // Style pour le message d'erreur
+        const errorMessage = document.getElementById('error-message');
 
         specieSelect.addEventListener('change', () => {
             if (specieSelect.value === '3') {
+                specieSelect.style.display = 'none';
                 newSpecieInput.style.display = 'block';
-                errorMessage.textContent = "Veuillez renseigner le nom de la nouvelle espèce.";
-                newSpecieInput.parentNode.appendChild(errorMessage); // Ajouter le message après le champ d'entrée
+                newSpecieInput.required = true;
+                errorMessage.style.display = 'block';
+                newSpecieInput.focus();
             } else {
                 newSpecieInput.style.display = 'none';
-                if (errorMessage.parentNode) { // Si le message existe déjà, on le supprime
-                    errorMessage.parentNode.removeChild(errorMessage);
-                }
+                specieSelect.style.display = 'block';
+                newSpecieInput.required = false;
+                errorMessage.style.display = 'none';
+                specieSelect.setAttribute('name', 'specie_id');
             }
         });
     </script>
+
+
 
 </body1>
 

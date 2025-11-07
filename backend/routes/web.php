@@ -1,14 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\FormulaireController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\RegisterController;
-
-
-
+use App\Http\Controllers\FrontuserController;
+use App\Http\Controllers\MessageAdminController;
 
 
 Route::get('/', function () {
@@ -24,10 +22,19 @@ Route::get('/show-register', [RegisterController::class, 'show'])->name('show-re
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/verify', [FrontuserController::class, 'verify'])->name('frontuser.verify');
 
-Route::middleware(['auth'])->group(function() {
 
-    Route::get('/animaux', [AnimalController::class, 'list'])->name('animaux.list');
+
+
+
+
+
+Route::get('/animaux', [AnimalController::class, 'list'])->name('animaux.list');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/messages', [MessageAdminController::class, 'index'])->name('admin.messages.index');
+    Route::get('/messages/{userId}', [MessageAdminController::class, 'show'])->name('admin.messages.show');
+    Route::post('/messages/reply', [MessageAdminController::class, 'reply'])->name('admin.messages.reply');
 
     Route::get('/animaux/add', [AnimalController::class, 'showAddForm'])->name('animaux.add');
 
@@ -39,11 +46,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::delete('/animaux/{id}', [AnimalController::class, 'delete'])->name('animaux.delete');
 
-    Route::get('/forms', [FormulaireController::class, 'list'])->name('forms.list');
 
-    Route::get('/forms/read/{id}', [FormulaireController::class, 'read'])->name('form.read');
-
-    Route::delete('/form/{id}', [FormulaireController::class, 'delete'])->name('form.delete');
 
     Route::get('/users-list', [UserController::class, 'list'])->name('users.list');
 

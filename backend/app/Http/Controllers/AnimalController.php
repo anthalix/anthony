@@ -5,197 +5,201 @@ namespace App\Http\Controllers;
 use App\Models\Breed;
 use App\Models\Animal;
 use App\Models\Specie;
+use App\Models\AnimalImage;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; 
 use Illuminate\Support\Facades\DB;
 
 class AnimalController extends Controller
- {
+{
 
-   public function list()
+    public function list()
     {
-        $animals = DB::table('animals')
+
+
+        $animals = Animal::select(
+            'animals.*',
+            'species.name as specie_name',
+            'breeds.name as breed_name',
+            'animal_images.filename as first_image'
+        )
             ->join('species', 'animals.specie_id', '=', 'species.id')
-            ->join('animal_breed', 'animal_breed.animal_id', '=', 'animals.id')
-            ->join('breeds', 'animal_breed.breed_id', '=', 'breeds.id')
-            ->select('animals.*', 'species.name as specie_name', 'breeds.name as breed_name')
+            ->join('animals_breeds', 'animals_breeds.animals_id', '=', 'animals.id')
+            ->join('breeds', 'animals_breeds.breeds_id', '=', 'breeds.id')
+            ->leftJoin('animal_images', function ($join) {
+                $join->on('animal_images.animal_id', '=', 'animals.id')
+                    ->whereRaw('animal_images.id = (
+                 SELECT id 
+                 FROM animal_images 
+                 WHERE animal_images.animal_id = animals.id 
+                 ORDER BY `order` ASC, id ASC 
+                 LIMIT 1
+             )');
+            })
             ->orderBy('animals.id')
             ->get();
+        $animals->transform(function ($animal) {
+            $animal->first_image_url = $animal->first_image
+                ? asset('assets/' . $animal->first_image)
+                : asset('assets/default.jpg');
+            return $animal;
+        });
+
+
+
+
 
         //return($animals);
+
         return view('animaux.list', ['animaux' => $animals]);
     }
-   public function showAddForm()
+    public function showAddForm()
     {
         return view('animaux.add');
     }
-   public function add(Request $request)
+    public function add(Request $request)
     {
         $animal = new Animal();
         $animal->name = $request->input('name');
         $animal->specie_id = $request->input('specie_id');
         $animal->age = $request->input('age');
         $animal->sex = $request->input('sex');
-        $animal->size = $request->input('size');
+        $animal->taille = $request->input('size');
         $animal->description = $request->input('description');
         $animal->status = $request->input('status');
-        $animal->ok_cat = $request->input('ok_cat');
-        $animal->ok_dog = $request->input('ok_dog');
-        $animal->ok_kid = $request->input('ok_kid');
-        $animal->name_of_adopter = $request->input('name_of_adopter');
-
-        
-
-        if ($request->hasFile('pictures')) {
-           
-            $file = $request->file('pictures');
+        $animal->cat = $request->input('cat');
+        $animal->dog = $request->input('dog');
+        $animal->child = $request->input('child');
+        /* if ($request->hasFile('thumbnail')) {
+            $file = $request->file('thumbnail');
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
-            $filePath = 'assets/' . $filename;
-
-
+            $filename = $originalName . '-' . Str::random(8)  . '.' . $extension;
             $file->move(public_path('assets'), $filename);
+            $animal->thumbnail = $filename;}
+        */
 
-            $animal->pictures = $filePath;
-            }
-            if ($request->hasFile('pictures2')) {
-           
-                $file = $request->file('pictures2');
-                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $extension = $file->getClientOriginalExtension();
-                $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
-                $filePath = 'assets/' . $filename;
-    
-    
-                $file->move(public_path('assets'), $filename);
-    
-                $animal->pictures2 = $filePath;
-            }
-            if ($request->hasFile('pictures3')) {
-           
-                $file = $request->file('pictures3');
-                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $extension = $file->getClientOriginalExtension();
-                $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
-                $filePath = 'assets/' . $filename;
-    
-    
-                $file->move(public_path('assets'), $filename);
-    
-                $animal->pictures3 = $filePath;
-            }
-
+        if ($request->input('specie_id') == 3) {
+            // Nouvelle espèce
             $new_specie_name = $request->input('new_specie');
-
-            // Vérifier et créer l'espèce si elle n'existe pas
-            $specie = Specie::where('name', $new_specie_name)->first();
-            if (!$specie) {
-                $specie = new Specie();
-                $specie->name = $new_specie_name;
-                $specie->save();
-            }
-        
-            // Assigner l'ID de l'espèce à l'animal
-            $animal->specie_id = $specie->id;
-
+            $specie = Specie::firstOrCreate(['name' => $new_specie_name]);
+        } else {
+            // Espèce existante
+            $specie = Specie::find($request->input('specie_id'));
+        }
+        $animal->specie_id = $specie->id;
         $animal->save();
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $filename = $originalName . '-' . Str::random(8) . '.' . $extension;
 
-        $breed_name = $request->input('breed_name');
-        $breed = Breed::where('name', $breed_name)->first();
+                $file->move(public_path('assets'), $filename);
+
+                $animal->images()->create([
+                    'filename' => $filename,
+                    'order' => 0
+                ]);
+            }
+        }
+
+
+
+        $breeds_name = $request->input('breeds_name');
+        $breed = Breed::where('name', $breeds_name)->first();
         if (!$breed) {
             $breed = new Breed();
-            $breed->name = $breed_name;
+            $breed->name = $breeds_name;
             $breed->save();
         }
         $animal->breeds()->attach($breed->id);
         return redirect()->route('animaux.list')->with('success', "L'animal {$animal->name} a bien été créé.");
-
     }
-   public function edit($id)
+    public function edit($id)
     {
-        $animal = DB::table('animals')
-            ->join('species', 'animals.specie_id', '=', 'species.id')
-            ->select('animals.*', 'species.name as specie_name')
-            ->where('animals.id', '=', $id)
-            ->first();
+        $animal = Animal::with('images')->findOrFail($id);
         return view('animaux.edit', ['animal' => $animal]);
     }
-   public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $animal = Animal::findOrFail($id);
         $age = $request->input('age');
-        $size = $request->input('size');
+        $taille = $request->input('size');
         $description = $request->input('description');
         $status = $request->input('status');
-        $ok_cat = $request->has('ok_cat') ? true : false;
-        $ok_dog = $request->has('ok_dog') ? true : false;
-        $ok_kid = $request->has('ok_kid') ? true : false;
-        $name_of_adopter = $request->input('name_of_adopter');
+        $cat = $request->has('ok_cat') ? true : false;
+        $dog = $request->has('ok_dog') ? true : false;
+        $child = $request->has('ok_kid') ? true : false;
 
         $animal->age = $age;
-        $animal->size = $size;
+        $animal->taille = $taille;
         $animal->description = $description;
         $animal->status = $status;
-        $animal->ok_cat = $ok_cat;
-        $animal->ok_dog = $ok_dog;
-        $animal->ok_kid = $ok_kid;
-        $animal->name_of_adopter = $name_of_adopter;
-        if ($request->hasFile('pictures')) {
+        $animal->cat = $cat;
+        $animal->dog = $dog;
+        $animal->child = $child;
+        /* if ($request->hasFile('thumbnail')) {
             // Supprimer l'ancienne image si elle existe
-            if ($animal->pictures && file_exists(public_path($animal->pictures))) {
-                unlink(public_path($animal->pictures));
+            if ($animal->thumbnail && file_exists(public_path($animal->thumbnail))) {
+                unlink(public_path($animal->thumbnail));
             }
 
-            
-            $file = $request->file('pictures');
+
+            $file = $request->file('thumbnail');
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
+            $filename = $originalName . '-' . Str::random(8)  . '.' . $extension;
             $filePath = 'assets/' . $filename;
 
             // Déplacer le fichier vers le répertoire public/assets
             $file->move(public_path('assets'), $filename);
-            $animal->pictures = $filePath;
+            $animal->thumbnail = $filename;
+        }*/
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $filename = $originalName . '-' . Str::random(8) . '.' . $extension;
 
-        }
-        if ($request->hasFile('pictures2')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($animal->pictures && file_exists(public_path($animal->pictures))) {
-                unlink(public_path($animal->pictures));
+                $file->move(public_path('assets'), $filename);
+
+                $animal->images()->create([
+                    'filename' => $filename,
+                    'order' => 0
+                ]);
             }
-
-            
-            $file = $request->file('pictures2');
-            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
-            $filePath = 'assets/' . $filename;
-
-            // Déplacer le fichier vers le répertoire public/assets
-            $file->move(public_path('assets'), $filename);
-            $animal->pictures2 = $filePath;
-
         }
-        if ($request->hasFile('pictures3')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($animal->pictures && file_exists(public_path($animal->pictures))) {
-                unlink(public_path($animal->pictures));
+        if ($request->filled('delete_image_id')) {
+            $image = AnimalImage::find($request->delete_image_id);
+            if ($image) {
+                $filePath = public_path('assets/' . $image->filename);
+                if (file_exists($filePath)) unlink($filePath);
+                $image->delete();
             }
-
-            
-            $file = $request->file('pictures3');
-            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename = $originalName . '-' . Str::random(0)  . '.' . $extension;
-            $filePath = 'assets/' . $filename;
-
-            // Déplacer le fichier vers le répertoire public/assets
-            $file->move(public_path('assets'), $filename);
-            $animal->pictures3 = $filePath;
-
         }
+        if ($request->hasFile('replace_image')) {
+            foreach ($request->file('replace_image') as $imgId => $file) {
+                $image = AnimalImage::find($imgId);
+                if ($image) {
+                    // Supprimer ancien fichier
+                    $oldFile = public_path('assets/' . $image->filename);
+                    if (file_exists($oldFile)) unlink($oldFile);
+
+                    // Déplacer nouveau fichier
+                    $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $originalName . '-' . Str::random(8) . '.' . $extension;
+                    $file->move(public_path('assets'), $filename);
+
+                    $image->update(['filename' => $filename]);
+                }
+            }
+        }
+
+
+
 
         $animal->save();
         return redirect()->route('animaux.list')->with(
@@ -203,17 +207,6 @@ class AnimalController extends Controller
             "L'animal a bien été modifié."
         );
     }
-   public function show($id)
-    {
-        $breedInfo = DB::table('animals')
-            ->join('animal_breed', 'animal_breed.animal_id', '=', 'animals.id')
-            ->join('breeds', 'animal_breed.breed_id', '=', 'breeds.id')
-            ->select('animals.*', 'breeds.name AS breed_name')
-            ->where('animals.id', $id)
-            ->get();
-        return response()->json($breedInfo);
-    }
-
     public function findBreed()
     {
 
@@ -227,4 +220,34 @@ class AnimalController extends Controller
         return redirect()->route('animaux.list')->with('success', "Votre {$animal->type} a bien été supprimé.");
     }
 
- }
+    public function show($id)
+    {
+        $animal = Animal::findOrFail($id)
+            ->join('animals_breeds', 'animals_breeds.animals_id', '=', 'animals.id')
+            ->join('breeds', 'animals_breeds.breeds_id', '=', 'breeds.id')
+            ->select('animals.*', 'breeds.name AS breed_name')
+            ->where('animals.id', $id)
+
+            ->get()
+            ->map(function ($animal) {
+                // 🔹 Récupère toutes les images associées à cet animal
+                $images = DB::table('animal_images')
+                    ->where('animal_id', $animal->id)
+                    ->orderBy('order')
+                    ->get()
+                    ->map(function ($img) {
+                        return asset('assets/' . $img->filename);
+                    });
+
+                // 🔹 Ajoute le tableau d'images et la première comme miniature
+                $animal->images = $images;
+                $animal->thumbnail = $images->first() ?? asset('assets/default.jpg');
+
+                return $animal;
+            });
+
+
+
+        return response()->json($animal);
+    }
+}

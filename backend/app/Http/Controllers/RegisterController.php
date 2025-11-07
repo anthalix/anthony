@@ -13,34 +13,31 @@ use App\Providers\RouteServiceProvider;
 
 
 class RegisterController extends Controller
- {
+{
 
 
- public function show()
+  public function show()
   {
 
-  return view('register');
-
+    return view('register');
   }
 
 
- public function register(Request $request)
+  public function register(Request $request)
   {
     $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:4',
+      'username' => 'required|string|max:255',
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:4',
     ]);
 
     $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
+      'username' => $request->username,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+      'is_verified' => 0,
     ]);
 
-  return view('login');
-
+    return view('login');
   }
- }
-
-
+}
